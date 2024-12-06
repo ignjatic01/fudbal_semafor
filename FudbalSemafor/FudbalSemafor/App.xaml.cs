@@ -9,6 +9,7 @@ namespace FudbalSemafor
     /// </summary>
     public partial class App : Application
     {
+        
     }
 
 }

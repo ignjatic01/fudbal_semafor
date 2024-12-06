@@ -17,8 +17,6 @@ public partial class SemaforDbContext : DbContext
     {
     }
 
-    public virtual DbSet<Boja> Bojas { get; set; }
-
     public virtual DbSet<Gol> Gols { get; set; }
 
     public virtual DbSet<Igrac> Igracs { get; set; }
@@ -55,23 +53,6 @@ public partial class SemaforDbContext : DbContext
         modelBuilder
             .UseCollation("utf8mb3_general_ci")
             .HasCharSet("utf8mb3");
-
-        modelBuilder.Entity<Boja>(entity =>
-        {
-            entity.HasKey(e => e.IdBoja).HasName("PRIMARY");
-
-            entity.ToTable("boja");
-
-            entity.Property(e => e.IdBoja).HasColumnName("idBoja");
-            entity.Property(e => e.PrimarnaBoja)
-                .HasMaxLength(7)
-                .IsFixedLength()
-                .HasColumnName("primarnaBoja");
-            entity.Property(e => e.SekundarnaBoja)
-                .HasMaxLength(7)
-                .IsFixedLength()
-                .HasColumnName("sekundarnaBoja");
-        });
 
         modelBuilder.Entity<Gol>(entity =>
         {
@@ -227,10 +208,7 @@ public partial class SemaforDbContext : DbContext
 
             entity.ToTable("klub");
 
-            entity.HasIndex(e => e.Boja, "FK_klub_boja_idx");
-
             entity.Property(e => e.IdKlub).HasColumnName("idKlub");
-            entity.Property(e => e.Boja).HasColumnName("boja");
             entity.Property(e => e.Grad)
                 .HasMaxLength(100)
                 .HasColumnName("grad");
@@ -240,11 +218,6 @@ public partial class SemaforDbContext : DbContext
             entity.Property(e => e.Slika)
                 .HasMaxLength(255)
                 .HasColumnName("slika");
-
-            entity.HasOne(d => d.BojaNavigation).WithMany(p => p.Klubs)
-                .HasForeignKey(d => d.Boja)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_klub_boja");
         });
 
         modelBuilder.Entity<Korisnik>(entity =>

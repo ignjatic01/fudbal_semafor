@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using MaterialDesignThemes.Wpf;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -20,5 +21,28 @@ namespace FudbalSemafor
         {
             InitializeComponent();
         }
+
+        private void ChangeThemeLight(object sender, RoutedEventArgs e)
+        {
+            SetPrimaryColor(Colors.Blue, BaseTheme.Light);
+        }
+
+        private void ChangeThemeDark(object sender, RoutedEventArgs e)
+        {
+            SetPrimaryColor(Colors.LightGreen, BaseTheme.Dark);
+        }
+
+        private static void SetPrimaryColor(Color color, BaseTheme bt)
+        {
+            PaletteHelper paletteHelper = new PaletteHelper();
+
+            var theme = paletteHelper.GetTheme();
+
+            theme.SetBaseTheme(bt);
+            theme.SetPrimaryColor(color);
+
+            paletteHelper.SetTheme(theme);
+        }
+
     }
 }

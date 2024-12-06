@@ -25,6 +25,7 @@ namespace FudbalSemafor.ViewModels
         {
             context = new SemaforDbContext();
             var klubs = context.Klubs.ToList();
+            //var klubs = context.Klubs.Where(k => k.Grad == "Banja Luka").ToList();
             Klubs = new ObservableCollection<Klub>();
             foreach ( var klub in klubs )
             {
@@ -36,7 +37,22 @@ namespace FudbalSemafor.ViewModels
 
         public void AddKlub()
         {
+            if (!string.IsNullOrWhiteSpace(NewKlub.NazivKluba))
+            {
+                try
+                {
+                    context.Klubs.Add(NewKlub);
+                    context.SaveChanges();
 
+                    Klubs.Add(NewKlub);
+
+                    NewKlub = new Klub();
+                    OnPropertyChanged(nameof(NewKlub));
+                }
+                catch (Exception ex)
+                {
+                }
+            }
         }
 
         protected void OnPropertyChanged(string propertyName)

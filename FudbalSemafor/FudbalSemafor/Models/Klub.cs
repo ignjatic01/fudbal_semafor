@@ -63,22 +63,6 @@ public partial class Klub : INotifyPropertyChanged
         }
     }
 
-    private int _boja;
-    public int Boja
-    {
-        get => _boja;
-        set
-        {
-            if (_boja != value)
-            {
-                _boja = value;
-                OnPropertyChanged(nameof(Boja));
-            }
-        }
-    }
-
-
-    public virtual Boja BojaNavigation { get; set; } = null!;
 
     public virtual ICollection<Gol> Gols { get; set; } = new List<Gol>();
 
