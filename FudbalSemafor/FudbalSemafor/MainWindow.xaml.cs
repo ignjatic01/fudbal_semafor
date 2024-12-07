@@ -1,4 +1,5 @@
-﻿using MaterialDesignThemes.Wpf;
+﻿using FudbalSemafor.ViewModels;
+using MaterialDesignThemes.Wpf;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -9,6 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static MaterialDesignThemes.Wpf.Theme;
 
 namespace FudbalSemafor
 {
@@ -20,6 +22,7 @@ namespace FudbalSemafor
         public MainWindow()
         {
             InitializeComponent();
+            //DataContext = new KlubViewModel();
         }
 
         private void ChangeThemeLight(object sender, RoutedEventArgs e)
@@ -29,7 +32,7 @@ namespace FudbalSemafor
 
         private void ChangeThemeDark(object sender, RoutedEventArgs e)
         {
-            SetPrimaryColor(Colors.LightGreen, BaseTheme.Dark);
+            SetPrimaryColor(Color.FromRgb(139, 195, 74), BaseTheme.Dark);
         }
 
         private static void SetPrimaryColor(Color color, BaseTheme bt)

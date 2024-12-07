@@ -32,10 +32,12 @@
         <Grid Background="{DynamicResource MaterialDesignBackground}">
             <StackPanel>
                 <!-- DataGrid -->
-                <DataGrid AutoGenerateColumns="False" 
+                <DataGrid AutoGenerateColumns="False"
+                    IsReadOnly="True"
+                    SelectedItem="{Binding SelectedKlub, Mode=TwoWay}"
                     ItemsSource="{Binding Klubs}" 
                     CanUserAddRows="False" 
-                    MaxHeight="400"
+                    MaxHeight="150"
                     HorizontalScrollBarVisibility="Auto" 
                     VerticalScrollBarVisibility="Auto">
                     <DataGrid.Columns>
@@ -45,13 +47,34 @@
                     </DataGrid.Columns>
                 </DataGrid>
 
-                <!-- Forma za unos -->
-                <StackPanel Orientation="Vertical" Margin="0,10,0,0">
-                    <TextBox Width="200" Margin="0,5,0,5" Text="{Binding NewKlub.NazivKluba}" />
-                    <TextBox Width="200" Margin="0,5,0,5"  Text="{Binding NewKlub.Grad}" />
-                    <TextBox Width="200" Margin="0,5,0,5" Text="{Binding NewKlub.Slika}"/>
-                    <Button Content="Dodaj Klub" Width="100" Margin="0,5,0,5" Command="{Binding AddKlubCommand}" />
-                </StackPanel>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Grid.Column="0" Orientation="Vertical" Margin="0,10,0,0">
+                        <TextBox materialDesign:HintAssist.Hint="Naziv kluba" Width="200" Margin="0,5,0,5" Text="{Binding NewKlub.NazivKluba}" Foreground="{DynamicResource MaterialDesignBody}"/>
+                        <TextBox materialDesign:HintAssist.Hint="Grad" Width="200" Margin="0,5,0,5"  Text="{Binding NewKlub.Grad}" Foreground="{DynamicResource MaterialDesignBody}"/>
+                        <TextBox materialDesign:HintAssist.Hint="URL slike" Width="200" Margin="0,5,0,5" Text="{Binding NewKlub.Slika}" Foreground="{DynamicResource MaterialDesignBody}"/>
+                        <Button Content="Dodaj Klub" Width="150" Margin="0,5,0,5" Command="{Binding AddKlubCommand}" />
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1" Orientation="Vertical" Margin="0,10,0,0">
+                        <TextBox materialDesign:HintAssist.Hint="Naziv kluba" Width="200" Margin="0,5,0,5" Text="{Binding SelectedKlub.NazivKluba}" Foreground="{DynamicResource MaterialDesignBody}"/>
+                        <TextBox materialDesign:HintAssist.Hint="Grad" Width="200" Margin="0,5,0,5"  Text="{Binding SelectedKlub.Grad}" Foreground="{DynamicResource MaterialDesignBody}"/>
+                        <TextBox materialDesign:HintAssist.Hint="URL slike" Width="200" Margin="0,5,0,5" Text="{Binding SelectedKlub.Slika}" Foreground="{DynamicResource MaterialDesignBody}"/>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <Button Content="Izmjeni" Width="100" Margin="0,5,10,5" Command="{Binding EditKlubCommand}"/>
+                            <Button BorderBrush="#D32F2F" Background="#D32F2F" Content="Obriši" Width="100" Margin="10,5,0,5" Command="{Binding DeleteKlubCommand}" />
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+                
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="10">
                     <Button Content="Switch Theme" Click="ChangeThemeLight" Width="150" Height="40" Margin="10" />
                     <Button Content="Switch Theme" Click="ChangeThemeDark" Width="150" Height="40" />
