@@ -1,4 +1,5 @@
 ﻿using FudbalSemafor.ViewModels;
+using FudbalSemafor.Views.Shared;
 using MaterialDesignThemes.Wpf;
 using System.Text;
 using System.Windows;
@@ -23,6 +24,7 @@ namespace FudbalSemafor
         {
             InitializeComponent();
             //DataContext = new KlubViewModel();
+            MainContent.Content = new SharedMenu();
         }
 
         private void ChangeThemeLight(object sender, RoutedEventArgs e)

@@ -24,5 +24,28 @@ namespace FudbalSemafor.Views.Shared
         {
             InitializeComponent();
         }
+
+        private void OpenKlub(object sender, RoutedEventArgs e)
+        {
+            KlubView klubView = new KlubView();
+            klubView.Show();
+            this.CloseWindow();
+        }
+
+        private void OpenKartonTip(object sender, RoutedEventArgs e)
+        {
+            KartonTipView kl = new KartonTipView();
+            kl.Show();
+            this.CloseWindow();
+        }
+
+        private void CloseWindow()
+        {
+            Window currentWindow = Window.GetWindow(this);
+            if (currentWindow != null)
+            {
+                currentWindow.Close();
+            }
+        }
     }
 }

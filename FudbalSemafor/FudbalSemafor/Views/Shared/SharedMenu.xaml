@@ -9,11 +9,11 @@
     <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
         <Menu VerticalAlignment="Center" Background="Transparent" HorizontalAlignment="Left">
             <MenuItem Header="Igrači" />
-            <MenuItem Header="Klubovi" />
+            <MenuItem Header="Klubovi" Click="OpenKlub"/>
             <MenuItem Header="Stadioni" />
             <MenuItem Header="Utakmice" />
             <MenuItem Header="Šifarnici">
-                <MenuItem Header="Tip kartona" />
+                <MenuItem Header="Tip kartona" Click="OpenKartonTip"/>
                 <MenuItem Header="Pozicija" />
             </MenuItem>
             <MenuItem Header="Opcije" />
