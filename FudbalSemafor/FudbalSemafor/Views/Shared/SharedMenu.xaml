@@ -14,7 +14,7 @@
             <MenuItem Header="Utakmice" />
             <MenuItem Header="Šifarnici">
                 <MenuItem Header="Tip kartona" Click="OpenKartonTip"/>
-                <MenuItem Header="Pozicija" />
+                <MenuItem Header="Pozicija" Click="OpenPozicija"/>
             </MenuItem>
             <MenuItem Header="Opcije" />
         </Menu>

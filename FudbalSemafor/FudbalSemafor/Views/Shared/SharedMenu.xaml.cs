@@ -39,6 +39,13 @@ namespace FudbalSemafor.Views.Shared
             this.CloseWindow();
         }
 
+        private void OpenPozicija(object sender, RoutedEventArgs e)
+        {
+            PozicijaView p = new PozicijaView();
+            p.Show();
+            this.CloseWindow();
+        }
+
         private void CloseWindow()
         {
             Window currentWindow = Window.GetWindow(this);
