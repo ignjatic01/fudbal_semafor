@@ -46,6 +46,13 @@ namespace FudbalSemafor.Views.Shared
             this.CloseWindow();
         }
 
+        private void OpenIgrac(object sender, RoutedEventArgs e)
+        {
+            IgracView i = new IgracView();
+            i.Show();
+            this.CloseWindow();
+        }
+
         private void CloseWindow()
         {
             Window currentWindow = Window.GetWindow(this);

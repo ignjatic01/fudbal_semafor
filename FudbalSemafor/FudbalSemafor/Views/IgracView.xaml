@@ -1,0 +1,118 @@
+﻿<Window x:Class="FudbalSemafor.Views.IgracView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FudbalSemafor.Views"
+        xmlns:shared="clr-namespace:FudbalSemafor.Views.Shared"
+        xmlns:vm="clr-namespace:FudbalSemafor.ViewModels"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="IgracView" Height="550" Width="900">
+    <Window.DataContext>
+        <vm:IgracViewModel />
+    </Window.DataContext>
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Resources/DarkTheme.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <DockPanel Background="{DynamicResource MaterialDesignBackground}">
+        <shared:SharedMenu DockPanel.Dock="Top" />
+
+        <Grid Background="{DynamicResource MaterialDesignBackground}">
+            <StackPanel>
+                <DataGrid AutoGenerateColumns="False"
+                    IsReadOnly="True"
+                    SelectedItem="{Binding SelectedIgrac, Mode=TwoWay}"
+                    ItemsSource="{Binding Igracs}" 
+                    CanUserAddRows="False" 
+                    MaxHeight="150"
+                    HorizontalScrollBarVisibility="Auto" 
+                    VerticalScrollBarVisibility="Auto">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Ime" Binding="{Binding Ime}" Width="*" />
+                        <DataGridTextColumn Header="Prezime" Binding="{Binding Prezime}" Width="*" />
+                        <DataGridTextColumn Header="Broj dresa" Binding="{Binding BrojDresa}" Width="*" />
+                        <DataGridTextColumn Header="Pozicija" Binding="{Binding PozicijaNavigation.OznakaPozicije}" Width="*" />
+                        <DataGridTextColumn Header="Klub" Binding="{Binding KlubNavigation.NazivKluba}" Width="*" />
+                    </DataGrid.Columns>
+                </DataGrid>
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Grid.Column="0" Orientation="Vertical" Margin="0,10,0,0">
+                        <TextBox materialDesign:HintAssist.Hint="Ime" Width="200" Margin="0,5,0,5" Text="{Binding NewIgrac.Ime}" Foreground="{DynamicResource MaterialDesignBody}"/>
+                        <TextBox materialDesign:HintAssist.Hint="Prezime" Width="200" Margin="0,5,0,5"  Text="{Binding NewIgrac.Prezime}" Foreground="{DynamicResource MaterialDesignBody}"/>
+                        <TextBox materialDesign:HintAssist.Hint="Broj dresa" Width="200" Margin="0,5,0,5" Text="{Binding NewIgrac.BrojDresa}" Foreground="{DynamicResource MaterialDesignBody}"/>
+                        <ComboBox
+                            ItemsSource="{Binding Klubs}"
+                            DisplayMemberPath="NazivKluba"
+                            SelectedValue="{Binding SelectedKlub}"
+                            materialDesign:HintAssist.Hint="Izaberite klub"                              
+                            IsEditable="True"
+                            Width="200"
+                            Margin="0,5,0,5"
+                            Foreground="{DynamicResource MaterialDesignBody}" />
+
+                        <ComboBox
+                            ItemsSource="{Binding Pozicijas}"
+                            DisplayMemberPath="NazivPozicije"
+                            SelectedValue="{Binding SelectedPozicija}"
+                            materialDesign:HintAssist.Hint="Izaberite Poziciju"                              
+                            IsEditable="True"
+                            Width="200"
+                            Margin="0,5,0,5"
+                            Foreground="{DynamicResource MaterialDesignBody}" />
+                        <Button Content="Dodaj igraca" Width="150" Margin="0,5,0,5" Command="{Binding AddIgracCommand}" />
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1" Orientation="Vertical" Margin="0,10,0,0">
+                        <TextBox materialDesign:HintAssist.Hint="Ime" Width="200" Margin="0,5,0,5" Text="{Binding SelectedIgrac.Ime}" Foreground="{DynamicResource MaterialDesignBody}"/>
+                        <TextBox materialDesign:HintAssist.Hint="Prezime" Width="200" Margin="0,5,0,5"  Text="{Binding SelectedIgrac.Prezime}" Foreground="{DynamicResource MaterialDesignBody}"/>
+                        <TextBox materialDesign:HintAssist.Hint="Broj dresa" Width="200" Margin="0,5,0,5" Text="{Binding SelectedIgrac.BrojDresa}" Foreground="{DynamicResource MaterialDesignBody}"/>
+                        <ComboBox
+                            ItemsSource="{Binding Klubs}"
+                            DisplayMemberPath="NazivKluba"
+                            SelectedValuePath="IdKlub"
+                            SelectedValue="{Binding SelectedIgrac.Klub}"
+                            materialDesign:HintAssist.Hint="Izaberite klub"                              
+                            IsEditable="True"
+                            Width="200"
+                            Margin="0,5,0,5"
+                            Foreground="{DynamicResource MaterialDesignBody}" />
+
+                        <ComboBox
+                            ItemsSource="{Binding Pozicijas}"
+                            DisplayMemberPath="NazivPozicije"
+                            SelectedValuePath="OznakaPozicije"
+                            SelectedValue="{Binding SelectedIgrac.Pozicija}"
+                            materialDesign:HintAssist.Hint="Izaberite Poziciju"                              
+                            IsEditable="True"
+                            Width="200"
+                            Margin="0,5,0,5"
+                            Foreground="{DynamicResource MaterialDesignBody}" />
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <Button Content="Izmjeni" Width="100" Margin="0,5,10,5" Command="{Binding EditIgracCommand}"/>
+                            <Button BorderBrush="#D32F2F" Background="#D32F2F" Content="Obriši" Width="100" Margin="10,5,0,5" Command="{Binding DeleteIgracCommand}" />
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+
+
+            </StackPanel>
+        </Grid>
+    </DockPanel>
+</Window>
