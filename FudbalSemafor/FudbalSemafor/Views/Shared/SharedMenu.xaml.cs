@@ -53,6 +53,13 @@ namespace FudbalSemafor.Views.Shared
             this.CloseWindow();
         }
 
+        private void OpenStadion(Object sender, RoutedEventArgs e)
+        {
+            StadionView s = new StadionView();
+            s.Show();
+            this.CloseWindow();
+        }
+
         private void CloseWindow()
         {
             Window currentWindow = Window.GetWindow(this);

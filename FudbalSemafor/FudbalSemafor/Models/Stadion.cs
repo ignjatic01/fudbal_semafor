@@ -1,19 +1,86 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace FudbalSemafor.Models;
 
-public partial class Stadion
+public partial class Stadion : INotifyPropertyChanged
 {
-    public int IdStadion { get; set; }
+    private int _idStadion;
+    public int IdStadion 
+    { 
+        get => _idStadion;
+        set
+        {
+            if (_idStadion != value)
+            {
+                _idStadion = value;
+                OnPropertyChanged(nameof(IdStadion));
+            }
+        }
+    }
 
-    public string Naziv { get; set; } = null!;
+    private string _naziv = null!;
+    public string Naziv 
+    { 
+        get => _naziv;
+        set
+        {
+            if (_naziv != value)
+            {
+                _naziv = value;
+                OnPropertyChanged(nameof(Naziv));
+            }
+        }
+    }
 
-    public string? Grad { get; set; }
+    private string? _grad;
+    public string Grad 
+    {
+        get => _grad;
+        set
+        {
+            if (_grad != value)
+            {
+                _grad = value;
+                OnPropertyChanged(nameof(Grad));
+            }
+        }
+    }
 
-    public int Kapacitet { get; set; }
+    private int _kapacitet;
+    public int Kapacitet 
+    {
+        get => _kapacitet; 
+        set
+        {
+            if (value != _kapacitet)
+            {
+                _kapacitet = value;
+                OnPropertyChanged(nameof(Kapacitet));
+            }
+        }
+    }
 
-    public string? Podloga { get; set; }
+    private string? _podloga;
+    public string Podloga 
+    {
+        get => _podloga;
+        set
+        {
+            if (_podloga != value)
+            {
+                _podloga = value;
+                OnPropertyChanged(nameof(Podloga));
+            }
+        }
+    }
 
     public virtual ICollection<Utakmica> Utakmicas { get; set; } = new List<Utakmica>();
+
+    public event PropertyChangedEventHandler PropertyChanged;
+    protected void OnPropertyChanged([System.Runtime.CompilerServices.CallerMemberName] string propertyName = null)
+    {
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+    }
 }

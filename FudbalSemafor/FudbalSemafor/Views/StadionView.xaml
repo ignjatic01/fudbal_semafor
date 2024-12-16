@@ -1,0 +1,80 @@
+﻿<Window x:Class="FudbalSemafor.Views.StadionView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FudbalSemafor.Views"
+        xmlns:shared="clr-namespace:FudbalSemafor.Views.Shared"
+        xmlns:vm="clr-namespace:FudbalSemafor.ViewModels"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="StadionView" Height="550" Width="900">
+    <Window.DataContext>
+        <vm:StadionViewModel />
+    </Window.DataContext>
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <!-- Uvoz stila iz Styles.xaml -->
+                <ResourceDictionary Source="../Resources/DarkTheme.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <DockPanel Background="{DynamicResource MaterialDesignBackground}">
+        <shared:SharedMenu DockPanel.Dock="Top" />
+
+        <Grid Background="{DynamicResource MaterialDesignBackground}">
+            <StackPanel>
+                <DataGrid AutoGenerateColumns="False"
+            IsReadOnly="True"
+            SelectedItem="{Binding SelectedStadion, Mode=TwoWay}"
+            ItemsSource="{Binding Stadions}" 
+            CanUserAddRows="False" 
+            MaxHeight="150"
+            HorizontalScrollBarVisibility="Auto" 
+            VerticalScrollBarVisibility="Auto">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Naziv stadiona" Binding="{Binding Naziv}" Width="*" />
+                        <DataGridTextColumn Header="Grad" Binding="{Binding Grad}" Width="*" />
+                        <DataGridTextColumn Header="Kapacitet" Binding="{Binding Kapacitet}" Width="*" />
+                        <DataGridTextColumn Header="Podloga" Binding="{Binding Podloga}" Width="*" />
+                    </DataGrid.Columns>
+                </DataGrid>
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Grid.Column="0" Orientation="Vertical" Margin="0,10,0,0">
+                        <TextBox materialDesign:HintAssist.Hint="Naziv stadiona" Width="200" Margin="0,5,0,5" Text="{Binding NewStadion.Naziv}" Foreground="{DynamicResource MaterialDesignBody}"/>
+                        <TextBox materialDesign:HintAssist.Hint="Grad" Width="200" Margin="0,5,0,5"  Text="{Binding NewStadion.Grad}" Foreground="{DynamicResource MaterialDesignBody}"/>
+                        <TextBox materialDesign:HintAssist.Hint="Kapacitet" Width="200" Margin="0,5,0,5" Text="{Binding NewStadion.Kapacitet}" Foreground="{DynamicResource MaterialDesignBody}"/>
+                        <TextBox materialDesign:HintAssist.Hint="Podloga" Width="200" Margin="0,5,0,5" Text="{Binding NewStadion.Podloga}" Foreground="{DynamicResource MaterialDesignBody}"/>
+                        <Button Content="Dodaj Stadion" Width="150" Margin="0,5,0,5" Command="{Binding AddStadionCommand}" />
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1" Orientation="Vertical" Margin="0,10,0,0">
+                        <TextBox materialDesign:HintAssist.Hint="Naziv stadiona" Width="200" Margin="0,5,0,5" Text="{Binding SelectedStadion.Naziv}" Foreground="{DynamicResource MaterialDesignBody}"/>
+                        <TextBox materialDesign:HintAssist.Hint="Grad" Width="200" Margin="0,5,0,5"  Text="{Binding SelectedStadion.Grad}" Foreground="{DynamicResource MaterialDesignBody}"/>
+                        <TextBox materialDesign:HintAssist.Hint="Kapacitet" Width="200" Margin="0,5,0,5" Text="{Binding SelectedStadion.Kapacitet}" Foreground="{DynamicResource MaterialDesignBody}"/>
+                        <TextBox materialDesign:HintAssist.Hint="Podloga" Width="200" Margin="0,5,0,5"  Text="{Binding SelectedStadion.Podloga}" Foreground="{DynamicResource MaterialDesignBody}"/>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <Button Content="Izmjeni" Width="100" Margin="0,5,10,5" Command="{Binding EditStadionCommand}"/>
+                            <Button BorderBrush="#D32F2F" Background="#D32F2F" Content="Obriši" Width="100" Margin="10,5,0,5" Command="{Binding DeleteStadionCommand}" />
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+
+
+            </StackPanel>
+        </Grid>
+    </DockPanel>
+</Window>
