@@ -60,6 +60,13 @@ namespace FudbalSemafor.Views.Shared
             this.CloseWindow();
         }
 
+        private void OpenUtakmica(Object sender, RoutedEventArgs e)
+        {
+            UtakmicaView u = new UtakmicaView();
+            u.Show();
+            this.CloseWindow();
+        }
+
         private void CloseWindow()
         {
             Window currentWindow = Window.GetWindow(this);

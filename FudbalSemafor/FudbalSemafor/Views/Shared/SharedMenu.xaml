@@ -11,7 +11,7 @@
             <MenuItem Header="Igrači" Click="OpenIgrac"/>
             <MenuItem Header="Klubovi" Click="OpenKlub"/>
             <MenuItem Header="Stadioni" Click="OpenStadion"/>
-            <MenuItem Header="Utakmice" />
+            <MenuItem Header="Utakmice" Click="OpenUtakmica"/>
             <MenuItem Header="Šifarnici">
                 <MenuItem Header="Tip kartona" Click="OpenKartonTip"/>
                 <MenuItem Header="Pozicija" Click="OpenPozicija"/>
