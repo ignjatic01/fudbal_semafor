@@ -1,14 +1,17 @@
 ﻿using FudbalSemafor.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media.Imaging;
 
 namespace FudbalSemafor.ViewModels
 {
@@ -29,6 +32,33 @@ namespace FudbalSemafor.ViewModels
                 }
             }
         }
+
+        private string _nazivSlike;
+        public string NazivSlike
+        {
+            get => _nazivSlike;
+            set
+            {
+                _nazivSlike = value;
+                OnPropertyChanged(nameof(NazivSlike));
+            }
+        }
+
+        private BitmapImage _prikazSlike;
+
+        private string _trenutnaPutanjaSlike;
+
+        public BitmapImage PrikazSlike
+        {
+            get => _prikazSlike;
+            set
+            {
+                _prikazSlike = value;
+                OnPropertyChanged(nameof(PrikazSlike));
+            }
+        }
+
+        public ICommand DodajSlikuCommand { get; set; }
 
         public ICommand AddKlubCommand { get; set; }
         public ICommand EditKlubCommand { get; set;}
@@ -51,6 +81,7 @@ namespace FudbalSemafor.ViewModels
             AddKlubCommand = new RelayCommand(AddKlub);
             EditKlubCommand = new RelayCommand(EditKlub);
             DeleteKlubCommand = new RelayCommand(DeleteKlub);
+            DodajSlikuCommand = new RelayCommand(DodajSliku);
         }
 
         public void AddKlub()
@@ -59,6 +90,11 @@ namespace FudbalSemafor.ViewModels
             {
                 try
                 {
+                    if(!string.IsNullOrEmpty(_trenutnaPutanjaSlike))
+                    {
+                        NewKlub.Slika = _trenutnaPutanjaSlike;
+                    }
+
                     context.Klubs.Add(NewKlub);
                     context.SaveChanges();
 
@@ -131,6 +167,51 @@ namespace FudbalSemafor.ViewModels
                 }
             }
         }
+
+        public void DodajSliku()
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                Filter = "Image files (*.jpg, *.jpeg, *.png, *.bmp)|*.jpg;*.jpeg;*.png;*.bmp",
+                Title = "Izaberite sliku"
+            };
+
+            if (openFileDialog.ShowDialog() == true)
+            {
+                string originalPath = openFileDialog.FileName;
+                string fileName = System.IO.Path.GetFileName(originalPath);
+
+                // Dobijanje putanje projekta (2 nivoa iznad bin foldera)
+                string projectDirectory = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\..\\..\\");
+                string imagesDirectory = System.IO.Path.Combine(projectDirectory, "Images");
+
+                // Kreirajte folder ako ne postoji
+                if (!Directory.Exists(imagesDirectory))
+                {
+                    Directory.CreateDirectory(imagesDirectory);
+                }
+
+                // Nova putanja za sliku
+                string newImagePath = System.IO.Path.Combine(imagesDirectory, fileName);
+
+                // Kopirajte sliku u projektni folder
+                File.Copy(originalPath, newImagePath, overwrite: true);
+
+                // Postavite novu putanju u ViewModel
+                _trenutnaPutanjaSlike = System.IO.Path.Combine("Images", fileName); // Relativna putanja
+                NazivSlike = fileName;
+
+                // Prikaz slike
+                BitmapImage bitmap = new BitmapImage(new Uri(newImagePath, UriKind.Absolute));
+                PrikazSlike = bitmap;
+            }
+            else
+            {
+                MessageBox.Show("Niste izabrali sliku.", "Obaveštenje", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+
+
 
         protected void OnPropertyChanged(string propertyName)
         {

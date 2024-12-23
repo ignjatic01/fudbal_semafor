@@ -19,6 +19,9 @@
     <Compile Update="Views\PozicijaView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\SemaforView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\Shared\SharedMenu.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -46,6 +49,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\PozicijaView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\SemaforView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Shared\SharedMenu.xaml">

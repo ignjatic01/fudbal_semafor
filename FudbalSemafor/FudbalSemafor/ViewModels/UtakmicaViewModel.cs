@@ -1,4 +1,5 @@
 ﻿using FudbalSemafor.Models;
+using FudbalSemafor.Views;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -243,7 +244,13 @@ namespace FudbalSemafor.ViewModels
 
         public void OpenUtakmica()
         {
+            if (SelectedUtakmica != null)
+            {
+                int idUtakmica = SelectedUtakmica.IdUtakmica;
 
+                SemaforView sw = new SemaforView(idUtakmica);
+                sw.Show();
+            }
         }
         protected void OnPropertyChanged(string propertyName)
         {

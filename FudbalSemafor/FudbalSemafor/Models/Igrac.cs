@@ -90,6 +90,20 @@ public partial class Igrac : INotifyPropertyChanged
         }
     }
 
+    private bool _uIgri;
+    public bool UIgri
+    {
+        get => _uIgri;
+        set
+        {
+            if (_uIgri != value)
+            {
+                _uIgri = value;
+                OnPropertyChanged(nameof(UIgri));
+            }
+        }
+    }
+
     public virtual ICollection<Gol> Gols { get; set; } = new List<Gol>();
 
     public virtual ICollection<Izmjena> IzmjenaIgracIzlaziNavigations { get; set; } = new List<Izmjena>();

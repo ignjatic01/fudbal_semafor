@@ -126,6 +126,7 @@ namespace FudbalSemafor.ViewModels
                 {
                     NewIgrac.Klub = SelectedKlub.IdKlub;
                     NewIgrac.Pozicija = SelectedPozicija.OznakaPozicije;
+                    NewIgrac.UIgri = false;
                     context.Igracs.Add(NewIgrac);
                     context.SaveChanges();
 

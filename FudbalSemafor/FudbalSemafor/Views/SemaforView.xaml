@@ -1,0 +1,130 @@
+﻿<Window x:Class="FudbalSemafor.Views.SemaforView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FudbalSemafor.Views"
+        xmlns:local2="clr-namespace:FudbalSemafor.Util"
+        xmlns:shared="clr-namespace:FudbalSemafor.Views.Shared"
+        xmlns:vm="clr-namespace:FudbalSemafor.ViewModels"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="SemaforView" Height="720" Width="1280">
+
+    <Window.Resources>
+        <local2:RelativeToAbsolutePathConverter x:Key="RelativeToAbsolutePathConverter" />
+    </Window.Resources>
+
+
+    <Grid Background="{DynamicResource MaterialDesignBackground}" >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="0.3*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*" />
+            <RowDefinition Height="6*" />
+            <RowDefinition Height="4*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Image Grid.Column="0" Grid.Row="0" Source="{Binding Domaci.Slika, Converter={StaticResource RelativeToAbsolutePathConverter}}" Width="125" Height="125" />
+        <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Domaci.NazivKluba}" 
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Center"
+                   Foreground="{DynamicResource MaterialDesignBody}"
+                   FontSize="30"
+                   Margin="15, 0, 0, 0"/>
+        <TextBlock Grid.Row="0" Grid.Column="2" Text="{Binding SelectedUtakmica.GoloviDomaci}" 
+           HorizontalAlignment="Center"
+           VerticalAlignment="Center"
+           Foreground="#D32F2F"
+           FontSize="100"/>
+        <TextBlock Grid.Row="0" Grid.Column="3" Text=":" 
+           HorizontalAlignment="Center"
+           VerticalAlignment="Center"
+           Foreground="#D32F2F"
+           FontSize="100"
+           Margin="0, 0, 0, 20"/>
+        <TextBlock Grid.Row="0" Grid.Column="4" Text="{Binding SelectedUtakmica.GoloviGosti}" 
+           HorizontalAlignment="Center"
+           VerticalAlignment="Center"
+           Foreground="#D32F2F"
+           FontSize="100"/>
+        <TextBlock Grid.Row="0" Grid.Column="5" Text="{Binding Gosti.NazivKluba}" 
+                   HorizontalAlignment="Right"
+                   VerticalAlignment="Center"
+                   Foreground="{DynamicResource MaterialDesignBody}"
+                   FontSize="30"
+                   Margin="0, 0, 15, 0"/>
+        <Image Grid.Column="6" Grid.Row="0" Source="{Binding Gosti.Slika, Converter={StaticResource RelativeToAbsolutePathConverter}}" Width="125" Height="125" />
+
+        <DataGrid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" AutoGenerateColumns="False"
+                IsReadOnly="True"
+                SelectedItem="{Binding SelectedDomaciStarter, Mode=TwoWay}"
+                ItemsSource="{Binding DomaciStarters}" 
+                CanUserAddRows="False" 
+                MaxHeight="300"
+                HorizontalScrollBarVisibility="Auto" 
+                VerticalScrollBarVisibility="Auto"
+                VerticalAlignment="Top"
+                HeadersVisibility="None"
+                Foreground="{DynamicResource MaterialDesignBody}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Broj" Binding="{Binding BrojDresa}" Width="*" Foreground="{DynamicResource MaterialDesignBody}" />
+                <DataGridTextColumn Header="Ime" Binding="{Binding Ime}" Width="*" Foreground="{DynamicResource MaterialDesignBody}" />
+                <DataGridTextColumn Header="Prezime" Binding="{Binding Prezime}" Width="*" Foreground="{DynamicResource MaterialDesignBody}" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
+            <TextBlock Text="Subs" 
+                   FontSize="18" 
+                   Foreground="{DynamicResource MaterialDesignBody}" 
+                   Margin="5,5,0,5"
+                   HorizontalAlignment="Left" />
+            <DataGrid AutoGenerateColumns="False"
+                IsReadOnly="True"
+                SelectedItem="{Binding SelectedDomaciSub, Mode=TwoWay}"
+                ItemsSource="{Binding DomaciSubs}" 
+                CanUserAddRows="False" 
+                MaxHeight="150"
+                HorizontalScrollBarVisibility="Auto" 
+                VerticalScrollBarVisibility="Visible"
+                VerticalAlignment="Top"
+                HeadersVisibility="None"
+                Foreground="{DynamicResource MaterialDesignBody}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Broj" Binding="{Binding BrojDresa}" Width="*"  Foreground="{DynamicResource MaterialDesignBody}" />
+                    <DataGridTextColumn Header="Ime" Binding="{Binding Ime}" Width="*" Foreground="{DynamicResource MaterialDesignBody}" />
+                    <DataGridTextColumn Header="Prezime" Binding="{Binding Prezime}" Width="*" Foreground="{DynamicResource MaterialDesignBody}" />
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button x:Name="DomaciUbacivanje" Content="Ubaci"
+                                        Command="{Binding DataContext.UbaciDomaciCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                        CommandParameter="{Binding}" 
+                                        IsEnabled="{Binding DataContext.GamePhase, RelativeSource={RelativeSource AncestorType=DataGrid}}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
+        <TextBlock Grid.Row="4" Grid.Column="0" Text="{Binding SelectedDomaciSub.BrojDresa}" 
+           HorizontalAlignment="Left"
+           VerticalAlignment="Center"
+           Foreground="{DynamicResource MaterialDesignBody}"
+           FontSize="20"
+           Margin="15, 0, 0, 0"/>
+        <Button Grid.Row="4" Grid.Column="1" Content="Ubaci u postavu" Width="150" Margin="0,5,0,5" Command="{Binding UbaciDomaci}" />
+    </Grid>
+</Window>
