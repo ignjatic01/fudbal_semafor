@@ -6,9 +6,12 @@
         xmlns:local="clr-namespace:FudbalSemafor.Views"
         xmlns:shared="clr-namespace:FudbalSemafor.Views.Shared"
         xmlns:vm="clr-namespace:FudbalSemafor.ViewModels"
+        xmlns:properties="clr-namespace:FudbalSemafor.Properties"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="IgracView" Height="550" Width="900">
+        Title="IgracView" Height="550" Width="900"
+        FontSize="{Binding Source={x:Static properties:Settings.Default}, Path=FontSize}"
+        FontFamily="{Binding Source={x:Static properties:Settings.Default}, Path=FontFamilyName}">
     <Window.DataContext>
         <vm:IgracViewModel />
     </Window.DataContext>
@@ -33,6 +36,7 @@
                     CanUserAddRows="False" 
                     MaxHeight="150"
                     HorizontalScrollBarVisibility="Auto" 
+                    FontSize="{Binding Source={x:Static properties:Settings.Default}, Path=FontSize}"
                     VerticalScrollBarVisibility="Auto">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Ime" Binding="{Binding Ime}" Width="*" />
@@ -76,7 +80,9 @@
                             Width="200"
                             Margin="0,5,0,5"
                             Foreground="{DynamicResource MaterialDesignBody}" />
-                        <Button Content="Dodaj igraca" Width="150" Margin="0,5,0,5" Command="{Binding AddIgracCommand}" />
+                        <Button Content="Dodaj igraca" Width="150" Height="40"
+                                Margin="0,5,0,5" Command="{Binding AddIgracCommand}" 
+                                FontSize="{Binding Source={x:Static properties:Settings.Default}, Path=FontSize}"/>
                     </StackPanel>
 
                     <StackPanel Grid.Column="1" Orientation="Vertical" Margin="0,10,0,0">
@@ -105,8 +111,12 @@
                             Margin="0,5,0,5"
                             Foreground="{DynamicResource MaterialDesignBody}" />
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                            <Button Content="Izmjeni" Width="100" Margin="0,5,10,5" Command="{Binding EditIgracCommand}"/>
-                            <Button BorderBrush="#D32F2F" Background="#D32F2F" Content="Obriši" Width="100" Margin="10,5,0,5" Command="{Binding DeleteIgracCommand}" />
+                            <Button Content="Izmjeni" Width="100" Height="40"
+                                    Margin="0,5,10,5" Command="{Binding EditIgracCommand}"
+                                    FontSize="{Binding Source={x:Static properties:Settings.Default}, Path=FontSize}"/>
+                            <Button BorderBrush="#D32F2F" Background="#D32F2F" Height="40" 
+                                    Content="Obriši" Width="100" Margin="10,5,0,5" Command="{Binding DeleteIgracCommand}" 
+                                    FontSize="{Binding Source={x:Static properties:Settings.Default}, Path=FontSize}"/>
                         </StackPanel>
                     </StackPanel>
                 </Grid>

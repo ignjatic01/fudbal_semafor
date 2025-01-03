@@ -6,10 +6,13 @@
         xmlns:local="clr-namespace:FudbalSemafor.Views"
         xmlns:local2="clr-namespace:FudbalSemafor.Util"
         xmlns:shared="clr-namespace:FudbalSemafor.Views.Shared"
+        xmlns:properties="clr-namespace:FudbalSemafor.Properties"
         xmlns:vm="clr-namespace:FudbalSemafor.ViewModels"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="Klub" Height="720" Width="1280">
+        Title="Klub" Height="720" Width="1280"
+        FontSize="{Binding Source={x:Static properties:Settings.Default}, Path=FontSize}"
+        FontFamily="{Binding Source={x:Static properties:Settings.Default}, Path=FontFamilyName}">
     <Window.DataContext>
         <vm:KlubViewModel />
     </Window.DataContext>
@@ -34,7 +37,8 @@
                 CanUserAddRows="False" 
                 MaxHeight="150"
                 HorizontalScrollBarVisibility="Auto" 
-                VerticalScrollBarVisibility="Auto">
+                VerticalScrollBarVisibility="Auto"
+                FontSize="{Binding Source={x:Static properties:Settings.Default}, Path=FontSize}">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="ID" Binding="{Binding IdKlub}" Width="*" />
                         <DataGridTextColumn Header="Naziv Kluba" Binding="{Binding NazivKluba}" Width="*" />
@@ -61,8 +65,9 @@
                                 Background="#FFC107" 
                                 Content="Dodaj sliku" 
                                 Command="{Binding DodajSlikuCommand}" 
-                                Width="150" 
-                                Margin="150,0,10,0" />
+                                Width="150" Height="40"
+                                Margin="150,0,10,0" 
+                                FontSize="{Binding Source={x:Static properties:Settings.Default}, Path=FontSize}"/>
 
                             <TextBlock 
                                 Text="{Binding NazivSlike}" 
@@ -71,7 +76,9 @@
                                 Margin="20,0,10,0"/>
                         </StackPanel>
 
-                        <Button Content="Dodaj Klub" Width="150" Margin="0,5,0,5" Command="{Binding AddKlubCommand}" />
+                        <Button Content="Dodaj Klub" Width="150" Height="40"
+                                Margin="0,5,0,5" Command="{Binding AddKlubCommand}" 
+                                FontSize="{Binding Source={x:Static properties:Settings.Default}, Path=FontSize}"/>
                     </StackPanel>
 
                     <StackPanel Grid.Column="1" Orientation="Vertical" Margin="0,10,0,0">
@@ -79,8 +86,12 @@
                         <TextBox materialDesign:HintAssist.Hint="Grad" Width="350" Margin="0,5,0,5"  Text="{Binding SelectedKlub.Grad}" Foreground="{DynamicResource MaterialDesignBody}"/>
                         <TextBox materialDesign:HintAssist.Hint="Grad" Width="350" Margin="0,5,0,5"  Text="{Binding SelectedKlub.Slika}" Foreground="{DynamicResource MaterialDesignBody}"/>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                            <Button Content="Izmjeni" Width="100" Margin="0,5,10,5" Command="{Binding EditKlubCommand}"/>
-                            <Button BorderBrush="#D32F2F" Background="#D32F2F" Content="Obriši" Width="100" Margin="10,5,0,5" Command="{Binding DeleteKlubCommand}" />
+                            <Button Content="Izmjeni" Width="100" Height="40" 
+                                    Margin="0,5,10,5" Command="{Binding EditKlubCommand}"
+                                    FontSize="{Binding Source={x:Static properties:Settings.Default}, Path=FontSize}"/>
+                            <Button BorderBrush="#D32F2F" Background="#D32F2F" Content="Obriši" Width="100" Height="40" 
+                                    Margin="10,5,0,5" Command="{Binding DeleteKlubCommand}" 
+                                    FontSize="{Binding Source={x:Static properties:Settings.Default}, Path=FontSize}"/>
                         </StackPanel>
                         <Image Source="{Binding SelectedKlub.Slika, Converter={StaticResource RelativeToAbsolutePathConverter}}" Width="150" Height="150" />
                     </StackPanel>

@@ -90,6 +90,20 @@ public partial class Utakmica : INotifyPropertyChanged
         }
     }
 
+    private bool _zapoceta;
+    public bool Zapoceta
+    {
+        get => _zapoceta;
+        set
+        {
+            if (value != _zapoceta)
+            {
+                _zapoceta = value;
+                OnPropertyChanged(nameof(Zapoceta));
+            }
+        }
+    }
+
     private Klub _domaciNavigation = null!;
     public virtual Klub DomaciNavigation 
     {

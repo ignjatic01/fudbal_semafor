@@ -39,6 +39,8 @@ public partial class SemaforDbContext : DbContext
 
     public virtual DbSet<Utakmica> Utakmicas { get; set; }
 
+    public virtual DbSet<IgracNaUtakmici> IgracNaUtakmicis {  get; set; } 
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         if (!optionsBuilder.IsConfigured)
@@ -228,15 +230,15 @@ public partial class SemaforDbContext : DbContext
 
             entity.HasIndex(e => e.Role, "FK_korisnik_role_idx");
 
-            entity.HasIndex(e => e.Email, "email_UNIQUE").IsUnique();
+            entity.HasIndex(e => e.KorisnickoIme, "korisnickoIme_UNIQUE").IsUnique();
 
             entity.Property(e => e.IdKorisnik).HasColumnName("idKorisnik");
-            entity.Property(e => e.Email).HasColumnName("email");
+            entity.Property(e => e.KorisnickoIme).HasColumnName("korisnickoIme");
             entity.Property(e => e.Ime)
                 .HasMaxLength(50)
                 .HasColumnName("ime");
             entity.Property(e => e.Lozinka)
-                .HasMaxLength(255)
+                .HasMaxLength(300)
                 .HasColumnName("lozinka");
             entity.Property(e => e.Prezime)
                 .HasMaxLength(50)
@@ -296,6 +298,20 @@ public partial class SemaforDbContext : DbContext
                 .HasColumnName("podloga");
         });
 
+        modelBuilder.Entity<IgracNaUtakmici>(entity =>
+        {
+            entity.HasKey(e => new { e.IdIgrac, e.IdUtakmica }).HasName("PRIMARY");
+
+            entity.ToTable("igrac_na_utakmici");
+
+            entity.HasIndex(e => e.IdIgrac, "FK_igrac_na_utakmici_igrac_idx");
+
+            entity.HasIndex(e => e.IdUtakmica, "FK_igrac_na_utakmici_utakmica_idx");
+
+            entity.Property(e => e.IdIgrac).HasColumnName("idIgrac");
+            entity.Property(e => e.IdUtakmica).HasColumnName("idUtakmica");
+        });
+
         modelBuilder.Entity<Utakmica>(entity =>
         {
             entity.HasKey(e => e.IdUtakmica).HasName("PRIMARY");
@@ -314,6 +330,7 @@ public partial class SemaforDbContext : DbContext
             entity.Property(e => e.GoloviGosti).HasColumnName("goloviGosti");
             entity.Property(e => e.Gosti).HasColumnName("gosti");
             entity.Property(e => e.Stadion).HasColumnName("stadion");
+            entity.Property(e => e.Zapoceta).HasColumnName("zapoceta");
 
             entity.HasOne(d => d.DomaciNavigation).WithMany(p => p.UtakmicaDomaciNavigations)
                 .HasForeignKey(d => d.Domaci)

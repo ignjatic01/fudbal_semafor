@@ -5,10 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FudbalSemafor.Views"
         xmlns:shared="clr-namespace:FudbalSemafor.Views.Shared"
+        xmlns:properties="clr-namespace:FudbalSemafor.Properties"
         xmlns:vm="clr-namespace:FudbalSemafor.ViewModels"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="UtakmicaView" Height="450" Width="800">
+        Title="UtakmicaView" Height="650" Width="1050"
+        FontSize="{Binding Source={x:Static properties:Settings.Default}, Path=FontSize}"
+        FontFamily="{Binding Source={x:Static properties:Settings.Default}, Path=FontFamilyName}">
     <Window.DataContext>
         <vm:UtakmicaViewModel />
     </Window.DataContext>
@@ -31,7 +34,8 @@
                 SelectedItem="{Binding SelectedUtakmica, Mode=TwoWay}"
                 ItemsSource="{Binding Utakmicas}" 
                 CanUserAddRows="False" 
-                MaxHeight="150"
+                MaxHeight="250"
+                FontSize="{Binding Source={x:Static properties:Settings.Default}, Path=FontSize}"
                 HorizontalScrollBarVisibility="Auto" 
                 VerticalScrollBarVisibility="Auto">
                     <DataGrid.Columns>
@@ -60,7 +64,7 @@
                         SelectedValue="{Binding SelectedDomaci}"
                         materialDesign:HintAssist.Hint="Izaberite domaci klub"                              
                         IsEditable="True"
-                        Width="200"
+                        Width="300"
                         Margin="0,5,0,5"
                         Foreground="{DynamicResource MaterialDesignBody}" />
 
@@ -70,7 +74,7 @@
                         SelectedValue="{Binding SelectedGosti}"
                         materialDesign:HintAssist.Hint="Izaberite gostujuci klub"                              
                         IsEditable="True"
-                        Width="200"
+                        Width="300"
                         Margin="0,5,0,5"
                         Foreground="{DynamicResource MaterialDesignBody}" />
 
@@ -80,10 +84,12 @@
                         SelectedValue="{Binding SelectedStadion}"
                         materialDesign:HintAssist.Hint="Izaberite stadion"                              
                         IsEditable="True"
-                        Width="200"
+                        Width="300"
                         Margin="0,5,0,5"
                         Foreground="{DynamicResource MaterialDesignBody}" />
-                        <Button Content="Dodaj utakmicu" Width="150" Margin="0,5,0,5" Command="{Binding AddUtakmicaCommand}" />
+                        <Button Content="Dodaj utakmicu" Width="200" Height="40"
+                                Margin="0,5,0,5" Command="{Binding AddUtakmicaCommand}" 
+                                FontSize="{Binding Source={x:Static properties:Settings.Default}, Path=FontSize}"/>
                     </StackPanel>
 
                     <StackPanel Grid.Column="1" Orientation="Vertical" Margin="0,10,0,0">
@@ -94,7 +100,7 @@
                         SelectedValue="{Binding SelectedUtakmica.Domaci}"
                         materialDesign:HintAssist.Hint="Izaberite domaci klub"                              
                         IsEditable="True"
-                        Width="200"
+                        Width="300"
                         Margin="0,5,0,5"
                         Foreground="{DynamicResource MaterialDesignBody}" />
 
@@ -105,7 +111,7 @@
                         SelectedValue="{Binding SelectedUtakmica.Gosti}"
                         materialDesign:HintAssist.Hint="Izaberite gostujuci klub"                              
                         IsEditable="True"
-                        Width="200"
+                        Width="300"
                         Margin="0,5,0,5"
                         Foreground="{DynamicResource MaterialDesignBody}" />
 
@@ -116,13 +122,19 @@
                         SelectedValue="{Binding SelectedUtakmica.Stadion}"
                         materialDesign:HintAssist.Hint="Izaberite stadion"                              
                         IsEditable="True"
-                        Width="200"
+                        Width="300"
                         Margin="0,5,0,5"
                         Foreground="{DynamicResource MaterialDesignBody}" />
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                            <Button Content="Izmjeni" Width="80" Margin="0,5,5,5" Command="{Binding EditUtakmicaCommand}"/>
-                            <Button BorderBrush="#D32F2F" Background="#D32F2F" Content="Obriši" Width="80" Margin="5,5,0,5" Command="{Binding DeleteUtakmicaCommand}" />
-                            <Button BorderBrush="#FFC107" Background="#FFC107" Content="Otvori" Width="80" Margin="5,5,0,5" Command="{Binding OpenUtakmicaCommand}" />
+                            <Button Content="Izmjeni" Width="100" Height="40" Margin="0,5,5,5" 
+                                    Command="{Binding EditUtakmicaCommand}" x:Name="EditBtn"
+                                    FontSize="{Binding Source={x:Static properties:Settings.Default}, Path=FontSize}"/>
+                            <Button BorderBrush="#D32F2F" Background="#D32F2F" Content="Obriši" Width="100" Height="40" 
+                                    Margin="5,5,0,5" Command="{Binding DeleteUtakmicaCommand}" x:Name="DeleteBtn"
+                                    FontSize="{Binding Source={x:Static properties:Settings.Default}, Path=FontSize}"/>
+                            <Button BorderBrush="#FFC107" Background="#FFC107" Content="Otvori" Width="100"  Height="40"
+                                    Margin="10,5,0,5" Command="{Binding OpenUtakmicaCommand}" 
+                                    FontSize="{Binding Source={x:Static properties:Settings.Default}, Path=FontSize}"/>
                         </StackPanel>
                     </StackPanel>
                 </Grid>

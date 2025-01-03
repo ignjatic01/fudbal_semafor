@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FudbalSemafor.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,11 @@ namespace FudbalSemafor.Views
         public UtakmicaView()
         {
             InitializeComponent();
+            if(CurrentUser.Role == "OPERATER")
+            {
+                EditBtn.Visibility = Visibility.Collapsed;
+                DeleteBtn.Visibility = Visibility.Collapsed;
+            }
         }
     }
 }

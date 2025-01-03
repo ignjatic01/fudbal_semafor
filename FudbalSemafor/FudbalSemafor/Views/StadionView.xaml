@@ -5,10 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FudbalSemafor.Views"
         xmlns:shared="clr-namespace:FudbalSemafor.Views.Shared"
+        xmlns:properties="clr-namespace:FudbalSemafor.Properties"
         xmlns:vm="clr-namespace:FudbalSemafor.ViewModels"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="StadionView" Height="550" Width="900">
+        Title="StadionView" Height="550" Width="900"
+        FontSize="{Binding Source={x:Static properties:Settings.Default}, Path=FontSize}"
+        FontFamily="{Binding Source={x:Static properties:Settings.Default}, Path=FontFamilyName}">
     <Window.DataContext>
         <vm:StadionViewModel />
     </Window.DataContext>
@@ -32,6 +35,7 @@
             SelectedItem="{Binding SelectedStadion, Mode=TwoWay}"
             ItemsSource="{Binding Stadions}" 
             CanUserAddRows="False" 
+            FontSize="{Binding Source={x:Static properties:Settings.Default}, Path=FontSize}"
             MaxHeight="150"
             HorizontalScrollBarVisibility="Auto" 
             VerticalScrollBarVisibility="Auto">
@@ -58,7 +62,9 @@
                         <TextBox materialDesign:HintAssist.Hint="Grad" Width="200" Margin="0,5,0,5"  Text="{Binding NewStadion.Grad}" Foreground="{DynamicResource MaterialDesignBody}"/>
                         <TextBox materialDesign:HintAssist.Hint="Kapacitet" Width="200" Margin="0,5,0,5" Text="{Binding NewStadion.Kapacitet}" Foreground="{DynamicResource MaterialDesignBody}"/>
                         <TextBox materialDesign:HintAssist.Hint="Podloga" Width="200" Margin="0,5,0,5" Text="{Binding NewStadion.Podloga}" Foreground="{DynamicResource MaterialDesignBody}"/>
-                        <Button Content="Dodaj Stadion" Width="150" Margin="0,5,0,5" Command="{Binding AddStadionCommand}" />
+                        <Button Content="Dodaj Stadion" Width="150" Height="40" Margin="0,5,0,5" 
+                                Command="{Binding AddStadionCommand}" 
+                                FontSize="{Binding Source={x:Static properties:Settings.Default}, Path=FontSize}"/>
                     </StackPanel>
 
                     <StackPanel Grid.Column="1" Orientation="Vertical" Margin="0,10,0,0">
@@ -67,8 +73,12 @@
                         <TextBox materialDesign:HintAssist.Hint="Kapacitet" Width="200" Margin="0,5,0,5" Text="{Binding SelectedStadion.Kapacitet}" Foreground="{DynamicResource MaterialDesignBody}"/>
                         <TextBox materialDesign:HintAssist.Hint="Podloga" Width="200" Margin="0,5,0,5"  Text="{Binding SelectedStadion.Podloga}" Foreground="{DynamicResource MaterialDesignBody}"/>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                            <Button Content="Izmjeni" Width="100" Margin="0,5,10,5" Command="{Binding EditStadionCommand}"/>
-                            <Button BorderBrush="#D32F2F" Background="#D32F2F" Content="Obriši" Width="100" Margin="10,5,0,5" Command="{Binding DeleteStadionCommand}" />
+                            <Button Content="Izmjeni" Width="100" Height="40" 
+                                    Margin="0,5,10,5" Command="{Binding EditStadionCommand}"
+                                    FontSize="{Binding Source={x:Static properties:Settings.Default}, Path=FontSize}"/>
+                            <Button BorderBrush="#D32F2F" Background="#D32F2F" Content="Obriši" Width="100" Height="40" 
+                                    FontSize="{Binding Source={x:Static properties:Settings.Default}, Path=FontSize}"
+                                    Margin="10,5,0,5" Command="{Binding DeleteStadionCommand}" />
                         </StackPanel>
                     </StackPanel>
                 </Grid>
