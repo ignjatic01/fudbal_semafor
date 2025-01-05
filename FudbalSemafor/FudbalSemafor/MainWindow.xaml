@@ -4,12 +4,12 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FudbalSemafor"
-        xmlns:shared="clr-namespace:FudbalSemafor.Views.Shared"
+        
         xmlns:properties="clr-namespace:FudbalSemafor.Properties"
         xmlns:vm="clr-namespace:FudbalSemafor.ViewModels"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="850"
+        Title="MainWindow" Height="720" Width="1280"
         Foreground="{DynamicResource MaterialDesignBody}"
         FontFamily="{Binding Source={x:Static properties:Settings.Default}, Path=FontFamilyName}" >
 
@@ -23,44 +23,25 @@
     </Window.Resources>
     <DockPanel Background="{DynamicResource MaterialDesignBackground}">
         <!-- Navigacioni bar -->
-        <shared:SharedMenu x:Name="MainContent" DockPanel.Dock="Top" />
-
-        <StackPanel>
-            <TextBlock FontSize="20" Margin="30" Text="Boja prozora:"></TextBlock>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10">
-                <Button Content="Light" Click="ChangeThemeLight" 
-                        Width="150" Height="40" Margin="10, 10, 50, 10" 
-                        FontSize="{Binding Source={x:Static properties:Settings.Default}, Path=FontSize}"/>
-                <Button Content="Dark" Click="ChangeThemeDark" 
-                        Width="150" Height="40" Margin="10, 10, 40, 10"
-                        FontSize="{Binding Source={x:Static properties:Settings.Default}, Path=FontSize}"/>
-                <Button Content="Inherit" Click="ChangeThemeMid" 
-                        Width="150" Height="40" Margin="10"
-                        FontSize="{Binding Source={x:Static properties:Settings.Default}, Path=FontSize}"/>
-            </StackPanel>
-            <Separator HorizontalAlignment="Stretch"  Margin="10,0"/>
-            <TextBlock FontSize="20" Margin="30" Text="Velicina fonta:"></TextBlock>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10">
-                <Button Content="Small" Click="ChangeFontSmall" 
-                        Width="150" Height="40" Margin="10, 10, 50, 10" 
-                        FontSize="{Binding Source={x:Static properties:Settings.Default}, Path=FontSize}"/>
-                <Button Content="Mid" Click="ChangeFontMid" 
-                        Width="150" Height="40" Margin="10, 10, 40, 10"
-                        FontSize="{Binding Source={x:Static properties:Settings.Default}, Path=FontSize}"/>
-                <Button Content="Big" Click="ChangeFontBig"
-                        Width="150" Height="40" Margin="10"
-                        FontSize="{Binding Source={x:Static properties:Settings.Default}, Path=FontSize}"/>
-            </StackPanel>
-            <Separator HorizontalAlignment="Stretch"  Margin="10,0"/>
-            <TextBlock FontSize="20" Margin="30" Text="Font: "></TextBlock>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10">
-                <Button Content="Default" Click="ChangeFontDefault" 
-                    Width="150" Height="40" Margin="10, 10, 50, 10" 
-                    FontSize="{Binding Source={x:Static properties:Settings.Default}, Path=FontSize}"/>
-                <Button Content="Consolas" Click="ChangeFontConsolas" 
-                    Width="150" Height="40" Margin="10, 10, 40, 10"
-                    FontSize="{Binding Source={x:Static properties:Settings.Default}, Path=FontSize}"/>
-            </StackPanel>
+        <!--<shared:SharedMenu x:Name="MainContent" DockPanel.Dock="Top" /> -->
+        <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
+            <Menu VerticalAlignment="Center" Background="Transparent" 
+          HorizontalAlignment="Left"
+          FontSize="{Binding Source={x:Static properties:Settings.Default}, Path=FontSize}"
+           FontFamily="{Binding Source={x:Static properties:Settings.Default}, Path=FontFamilyName}">
+                <MenuItem Header="Igrači" Click="OpenIgrac" x:Name="IgraciMenuItem" />
+                <MenuItem Header="Klubovi" Click="OpenKlub" x:Name="KluboviMenuItem" />
+                <MenuItem Header="Stadioni" Click="OpenStadion" x:Name="StadioniMenuItem" />
+                <MenuItem Header="Utakmice" Click="OpenUtakmica" x:Name="UtakmicaMenuItem" />
+                <MenuItem Header="Šifarnici" x:Name="SifarniciMenuItem" >
+                    <MenuItem Header="Tip kartona" Click="OpenKartonTip"/>
+                    <MenuItem Header="Pozicija" Click="OpenPozicija"/>
+                </MenuItem>
+                <MenuItem Header="Opcije" Click="OpenOpcije" x:Name="OpcijeMenuItem" />
+                <MenuItem Header="Statistika" Click="OpenStatistic" x:Name="StatisticMenuItem" />
+            </Menu>
         </StackPanel>
-     </DockPanel>
+        <ContentControl x:Name="MainContent" />
+
+    </DockPanel>
 </Window>

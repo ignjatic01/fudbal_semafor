@@ -1,27 +1,12 @@
-﻿<UserControl x:Class="FudbalSemafor.Views.Shared.SharedMenu"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:FudbalSemafor.Views.Shared"
-             xmlns:properties="clr-namespace:FudbalSemafor.Properties"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800"
-            >
-    <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
-        <Menu VerticalAlignment="Center" Background="Transparent" 
-              HorizontalAlignment="Left"
-              FontSize="{Binding Source={x:Static properties:Settings.Default}, Path=FontSize}"
-               FontFamily="{Binding Source={x:Static properties:Settings.Default}, Path=FontFamilyName}">
-            <MenuItem Header="Igrači" Click="OpenIgrac" x:Name="IgraciMenuItem" />
-            <MenuItem Header="Klubovi" Click="OpenKlub" x:Name="KluboviMenuItem" />
-            <MenuItem Header="Stadioni" Click="OpenStadion" x:Name="StadioniMenuItem" />
-            <MenuItem Header="Utakmice" Click="OpenUtakmica" x:Name="UtakmicaMenuItem" />
-            <MenuItem Header="Šifarnici" x:Name="SifarniciMenuItem" >
-                <MenuItem Header="Tip kartona" Click="OpenKartonTip"/>
-                <MenuItem Header="Pozicija" Click="OpenPozicija"/>
-            </MenuItem>
-            <MenuItem Header="Opcije" Click="OpenOpcije" x:Name="OpcijeMenuItem" />
-        </Menu>
-    </StackPanel>
-</UserControl>
+﻿<Window x:Class="FudbalSemafor.Views.Shared.SharedMenu"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FudbalSemafor.Views.Shared"
+        mc:Ignorable="d"
+        Title="SharedMenu" Height="450" Width="800">
+    <Grid>
+        
+    </Grid>
+</Window>

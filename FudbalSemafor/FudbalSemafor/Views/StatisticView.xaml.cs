@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LiveCharts;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,11 +16,11 @@ using System.Windows.Shapes;
 namespace FudbalSemafor.Views
 {
     /// <summary>
-    /// Interaction logic for Klub.xaml
+    /// Interaction logic for StatisticView.xaml
     /// </summary>
-    public partial class KlubView : UserControl
+    public partial class StatisticView : UserControl
     {
-        public KlubView()
+        public StatisticView()
         {
             InitializeComponent();
         }

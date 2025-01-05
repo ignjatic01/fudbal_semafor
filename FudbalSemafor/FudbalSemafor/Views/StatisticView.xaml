@@ -1,0 +1,45 @@
+﻿<UserControl x:Class="FudbalSemafor.Views.StatisticView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FudbalSemafor.Views"
+        xmlns:shared="clr-namespace:FudbalSemafor.Views.Shared"
+        xmlns:vm="clr-namespace:FudbalSemafor.ViewModels"
+        xmlns:properties="clr-namespace:FudbalSemafor.Properties"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+        mc:Ignorable="d"
+        Background="{DynamicResource MaterialDesignBackground}"
+        FontSize="{Binding Source={x:Static properties:Settings.Default}, Path=FontSize}"
+        FontFamily="{Binding Source={x:Static properties:Settings.Default}, Path=FontFamilyName}">
+
+    <UserControl.DataContext>
+        <vm:StatisticViewModel />
+    </UserControl.DataContext>
+    <Grid>
+        <DockPanel Background="{DynamicResource MaterialDesignBackground}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <!-- Definisanje redova -->
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="3*" />
+                    <RowDefinition Height="3*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="3*" />
+                </Grid.RowDefinitions>
+
+                <lvc:PieChart Grid.Row="1" Grid.Column="0">
+                    <lvc:PieChart.Series>
+                        <lvc:PieSeries Title="Zuti kartoni" Values="{Binding ZutiKartoni}" Fill="Yellow"/>
+                        <lvc:PieSeries Title="Crveni kartoni" Values="{Binding CrveniKartoni}" Fill="Red"/>
+                    </lvc:PieChart.Series>
+                </lvc:PieChart>
+            </Grid>
+        </DockPanel>
+    </Grid>
+</UserControl>

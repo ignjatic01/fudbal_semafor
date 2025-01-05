@@ -17,7 +17,7 @@ namespace FudbalSemafor.Views
     /// <summary>
     /// Interaction logic for KartonTipView.xaml
     /// </summary>
-    public partial class KartonTipView : Window
+    public partial class KartonTipView : UserControl
     {
         public KartonTipView()
         {

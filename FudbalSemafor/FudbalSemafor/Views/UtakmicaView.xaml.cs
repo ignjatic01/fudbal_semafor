@@ -18,7 +18,7 @@ namespace FudbalSemafor.Views
     /// <summary>
     /// Interaction logic for UtakmicaView.xaml
     /// </summary>
-    public partial class UtakmicaView : Window
+    public partial class UtakmicaView : UserControl
     {
         public UtakmicaView()
         {

@@ -17,7 +17,7 @@ namespace FudbalSemafor.Views
     /// <summary>
     /// Interaction logic for IgracView.xaml
     /// </summary>
-    public partial class IgracView : Window
+    public partial class IgracView : UserControl
     {
         public IgracView()
         {

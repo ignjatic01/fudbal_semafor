@@ -17,7 +17,7 @@ namespace FudbalSemafor.Views
     /// <summary>
     /// Interaction logic for PozicijaView.xaml
     /// </summary>
-    public partial class PozicijaView : Window
+    public partial class PozicijaView : UserControl
     {
         public PozicijaView()
         {

@@ -1,146 +1,126 @@
-﻿<Window x:Class="FudbalSemafor.Views.UtakmicaView"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:FudbalSemafor.Views"
-        xmlns:shared="clr-namespace:FudbalSemafor.Views.Shared"
-        xmlns:properties="clr-namespace:FudbalSemafor.Properties"
-        xmlns:vm="clr-namespace:FudbalSemafor.ViewModels"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        mc:Ignorable="d"
-        Title="UtakmicaView" Height="650" Width="1050"
-        FontSize="{Binding Source={x:Static properties:Settings.Default}, Path=FontSize}"
-        FontFamily="{Binding Source={x:Static properties:Settings.Default}, Path=FontFamilyName}">
-    <Window.DataContext>
+﻿<UserControl x:Class="FudbalSemafor.Views.UtakmicaView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:FudbalSemafor.Views"
+             xmlns:shared="clr-namespace:FudbalSemafor.Views.Shared"
+             xmlns:properties="clr-namespace:FudbalSemafor.Properties"
+             xmlns:vm="clr-namespace:FudbalSemafor.ViewModels"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d"
+             FontSize="{Binding Source={x:Static properties:Settings.Default}, Path=FontSize}"
+             FontFamily="{Binding Source={x:Static properties:Settings.Default}, Path=FontFamilyName}">
+
+    <UserControl.DataContext>
         <vm:UtakmicaViewModel />
-    </Window.DataContext>
+    </UserControl.DataContext>
 
-    <Window.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="../Resources/DarkTheme.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </Window.Resources>
+    <Grid Background="{DynamicResource MaterialDesignBackground}">
+        <StackPanel>
+            <DataGrid AutoGenerateColumns="False"
+                          IsReadOnly="True"
+                          SelectedItem="{Binding SelectedUtakmica, Mode=TwoWay}"
+                          ItemsSource="{Binding Utakmicas}" 
+                          CanUserAddRows="False" 
+                          MaxHeight="250"
+                          FontSize="{Binding Source={x:Static properties:Settings.Default}, Path=FontSize}"
+                          HorizontalScrollBarVisibility="Auto" 
+                          VerticalScrollBarVisibility="Auto">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Domaci" Binding="{Binding DomaciNavigation.NazivKluba}" Width="*" />
+                    <DataGridTextColumn Header="Gosti" Binding="{Binding GostiNavigation.NazivKluba}" Width="*" />
+                    <DataGridTextColumn Header="Domaci golovi" Binding="{Binding GoloviDomaci}" Width="*" />
+                    <DataGridTextColumn Header="Gosti golovi" Binding="{Binding GoloviGosti}" Width="*" />
+                    <DataGridTextColumn Header="Stadion" Binding="{Binding StadionNavigation.Naziv}" Width="*" />
+                </DataGrid.Columns>
+            </DataGrid>
 
-    <DockPanel Background="{DynamicResource MaterialDesignBackground}">
-        <shared:SharedMenu DockPanel.Dock="Top" />
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
 
-        <Grid Background="{DynamicResource MaterialDesignBackground}">
-            <StackPanel>
-                <DataGrid AutoGenerateColumns="False"
-                IsReadOnly="True"
-                SelectedItem="{Binding SelectedUtakmica, Mode=TwoWay}"
-                ItemsSource="{Binding Utakmicas}" 
-                CanUserAddRows="False" 
-                MaxHeight="250"
-                FontSize="{Binding Source={x:Static properties:Settings.Default}, Path=FontSize}"
-                HorizontalScrollBarVisibility="Auto" 
-                VerticalScrollBarVisibility="Auto">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="Domaci" Binding="{Binding DomaciNavigation.NazivKluba}" Width="*" />
-                        <DataGridTextColumn Header="Gosti" Binding="{Binding GostiNavigation.NazivKluba}" Width="*" />
-                        <DataGridTextColumn Header="Domaci golovi" Binding="{Binding GoloviDomaci}" Width="*" />
-                        <DataGridTextColumn Header="Gosti golovi" Binding="{Binding GoloviGosti}" Width="*" />
-                        <DataGridTextColumn Header="Stadion" Binding="{Binding StadionNavigation.Naziv}" Width="*" />
-                    </DataGrid.Columns>
-                </DataGrid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
 
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
+                <StackPanel Grid.Column="0" Orientation="Vertical" Margin="0,10,0,0">
+                    <ComboBox ItemsSource="{Binding Klubs}"
+                                  DisplayMemberPath="NazivKluba"
+                                  SelectedValue="{Binding SelectedDomaci}"
+                                  materialDesign:HintAssist.Hint="Izaberite domaci klub"                              
+                                  IsEditable="True"
+                                  Width="300"
+                                  Margin="0,5,0,5"
+                                  Foreground="{DynamicResource MaterialDesignBody}" />
 
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
+                    <ComboBox ItemsSource="{Binding Klubs}"
+                                  DisplayMemberPath="NazivKluba"
+                                  SelectedValue="{Binding SelectedGosti}"
+                                  materialDesign:HintAssist.Hint="Izaberite gostujuci klub"                              
+                                  IsEditable="True"
+                                  Width="300"
+                                  Margin="0,5,0,5"
+                                  Foreground="{DynamicResource MaterialDesignBody}" />
 
-                    <StackPanel Grid.Column="0" Orientation="Vertical" Margin="0,10,0,0">
-                        <ComboBox
-                        ItemsSource="{Binding Klubs}"
-                        DisplayMemberPath="NazivKluba"
-                        SelectedValue="{Binding SelectedDomaci}"
-                        materialDesign:HintAssist.Hint="Izaberite domaci klub"                              
-                        IsEditable="True"
-                        Width="300"
-                        Margin="0,5,0,5"
-                        Foreground="{DynamicResource MaterialDesignBody}" />
-
-                        <ComboBox
-                        ItemsSource="{Binding Klubs}"
-                        DisplayMemberPath="NazivKluba"
-                        SelectedValue="{Binding SelectedGosti}"
-                        materialDesign:HintAssist.Hint="Izaberite gostujuci klub"                              
-                        IsEditable="True"
-                        Width="300"
-                        Margin="0,5,0,5"
-                        Foreground="{DynamicResource MaterialDesignBody}" />
-
-                        <ComboBox
-                        ItemsSource="{Binding Stadions}"
-                        DisplayMemberPath="Naziv"
-                        SelectedValue="{Binding SelectedStadion}"
-                        materialDesign:HintAssist.Hint="Izaberite stadion"                              
-                        IsEditable="True"
-                        Width="300"
-                        Margin="0,5,0,5"
-                        Foreground="{DynamicResource MaterialDesignBody}" />
-                        <Button Content="Dodaj utakmicu" Width="200" Height="40"
+                    <ComboBox ItemsSource="{Binding Stadions}"
+                                  DisplayMemberPath="Naziv"
+                                  SelectedValue="{Binding SelectedStadion}"
+                                  materialDesign:HintAssist.Hint="Izaberite stadion"                              
+                                  IsEditable="True"
+                                  Width="300"
+                                  Margin="0,5,0,5"
+                                  Foreground="{DynamicResource MaterialDesignBody}" />
+                    <Button Content="Dodaj utakmicu" Width="200" Height="40"
                                 Margin="0,5,0,5" Command="{Binding AddUtakmicaCommand}" 
                                 FontSize="{Binding Source={x:Static properties:Settings.Default}, Path=FontSize}"/>
-                    </StackPanel>
+                </StackPanel>
 
-                    <StackPanel Grid.Column="1" Orientation="Vertical" Margin="0,10,0,0">
-                        <ComboBox
-                        ItemsSource="{Binding Klubs}"
-                        DisplayMemberPath="NazivKluba"
-                        SelectedValuePath="IdKlub"
-                        SelectedValue="{Binding SelectedUtakmica.Domaci}"
-                        materialDesign:HintAssist.Hint="Izaberite domaci klub"                              
-                        IsEditable="True"
-                        Width="300"
-                        Margin="0,5,0,5"
-                        Foreground="{DynamicResource MaterialDesignBody}" />
+                <StackPanel Grid.Column="1" Orientation="Vertical" Margin="0,10,0,0">
+                    <ComboBox ItemsSource="{Binding Klubs}"
+                                  DisplayMemberPath="NazivKluba"
+                                  SelectedValuePath="IdKlub"
+                                  SelectedValue="{Binding SelectedUtakmica.Domaci}"
+                                  materialDesign:HintAssist.Hint="Izaberite domaci klub"                              
+                                  IsEditable="True"
+                                  Width="300"
+                                  Margin="0,5,0,5"
+                                  Foreground="{DynamicResource MaterialDesignBody}" />
 
-                        <ComboBox
-                        ItemsSource="{Binding Klubs}"
-                        DisplayMemberPath="NazivKluba"
-                        SelectedValuePath="IdKlub"
-                        SelectedValue="{Binding SelectedUtakmica.Gosti}"
-                        materialDesign:HintAssist.Hint="Izaberite gostujuci klub"                              
-                        IsEditable="True"
-                        Width="300"
-                        Margin="0,5,0,5"
-                        Foreground="{DynamicResource MaterialDesignBody}" />
+                    <ComboBox ItemsSource="{Binding Klubs}"
+                                  DisplayMemberPath="NazivKluba"
+                                  SelectedValuePath="IdKlub"
+                                  SelectedValue="{Binding SelectedUtakmica.Gosti}"
+                                  materialDesign:HintAssist.Hint="Izaberite gostujuci klub"                              
+                                  IsEditable="True"
+                                  Width="300"
+                                  Margin="0,5,0,5"
+                                  Foreground="{DynamicResource MaterialDesignBody}" />
 
-                        <ComboBox
-                        ItemsSource="{Binding Stadions}"
-                        DisplayMemberPath="Naziv"
-                        SelectedValuePath="IdStadion"
-                        SelectedValue="{Binding SelectedUtakmica.Stadion}"
-                        materialDesign:HintAssist.Hint="Izaberite stadion"                              
-                        IsEditable="True"
-                        Width="300"
-                        Margin="0,5,0,5"
-                        Foreground="{DynamicResource MaterialDesignBody}" />
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                            <Button Content="Izmjeni" Width="100" Height="40" Margin="0,5,5,5" 
+                    <ComboBox ItemsSource="{Binding Stadions}"
+                                  DisplayMemberPath="Naziv"
+                                  SelectedValuePath="IdStadion"
+                                  SelectedValue="{Binding SelectedUtakmica.Stadion}"
+                                  materialDesign:HintAssist.Hint="Izaberite stadion"                              
+                                  IsEditable="True"
+                                  Width="300"
+                                  Margin="0,5,0,5"
+                                  Foreground="{DynamicResource MaterialDesignBody}" />
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Button Content="Izmjeni" Width="100" Height="40" Margin="0,5,5,5" 
                                     Command="{Binding EditUtakmicaCommand}" x:Name="EditBtn"
                                     FontSize="{Binding Source={x:Static properties:Settings.Default}, Path=FontSize}"/>
-                            <Button BorderBrush="#D32F2F" Background="#D32F2F" Content="Obriši" Width="100" Height="40" 
+                        <Button BorderBrush="#D32F2F" Background="#D32F2F" Content="Obriši" Width="100" Height="40" 
                                     Margin="5,5,0,5" Command="{Binding DeleteUtakmicaCommand}" x:Name="DeleteBtn"
                                     FontSize="{Binding Source={x:Static properties:Settings.Default}, Path=FontSize}"/>
-                            <Button BorderBrush="#FFC107" Background="#FFC107" Content="Otvori" Width="100"  Height="40"
+                        <Button BorderBrush="#FFC107" Background="#FFC107" Content="Otvori" Width="100"  Height="40"
                                     Margin="10,5,0,5" Command="{Binding OpenUtakmicaCommand}" 
                                     FontSize="{Binding Source={x:Static properties:Settings.Default}, Path=FontSize}"/>
-                        </StackPanel>
                     </StackPanel>
-                </Grid>
-
-
-            </StackPanel>
-        </Grid>
-    </DockPanel>
-</Window>
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+    </Grid>
+</UserControl>

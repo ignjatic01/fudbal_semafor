@@ -17,7 +17,7 @@ namespace FudbalSemafor.Views
     /// <summary>
     /// Interaction logic for StadionView.xaml
     /// </summary>
-    public partial class StadionView : Window
+    public partial class StadionView : UserControl
     {
         public StadionView()
         {

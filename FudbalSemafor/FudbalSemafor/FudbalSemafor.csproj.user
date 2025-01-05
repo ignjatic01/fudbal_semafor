@@ -19,6 +19,9 @@
     <Compile Update="Views\LoginView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\OpcijeView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\PozicijaView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -32,6 +35,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\StadionView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\StatisticView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\UtakmicaView.xaml.cs">
@@ -57,6 +63,9 @@
     <Page Update="Views\LoginView.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Views\OpcijeView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Views\PozicijaView.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -70,6 +79,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\StadionView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\StatisticView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\UtakmicaView.xaml">

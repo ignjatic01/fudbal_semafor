@@ -1,43 +1,33 @@
-﻿<Window x:Class="FudbalSemafor.Views.IgracView"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:FudbalSemafor.Views"
-        xmlns:shared="clr-namespace:FudbalSemafor.Views.Shared"
-        xmlns:vm="clr-namespace:FudbalSemafor.ViewModels"
-        xmlns:properties="clr-namespace:FudbalSemafor.Properties"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        mc:Ignorable="d"
-        Title="IgracView" Height="550" Width="900"
-        FontSize="{Binding Source={x:Static properties:Settings.Default}, Path=FontSize}"
-        FontFamily="{Binding Source={x:Static properties:Settings.Default}, Path=FontFamilyName}">
-    <Window.DataContext>
-        <vm:IgracViewModel />
-    </Window.DataContext>
+﻿<UserControl x:Class="FudbalSemafor.Views.IgracView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:FudbalSemafor.Views"
+             xmlns:shared="clr-namespace:FudbalSemafor.Views.Shared"
+             xmlns:vm="clr-namespace:FudbalSemafor.ViewModels"
+             xmlns:properties="clr-namespace:FudbalSemafor.Properties"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d"
+             FontSize="{Binding Source={x:Static properties:Settings.Default}, Path=FontSize}"
+             FontFamily="{Binding Source={x:Static properties:Settings.Default}, Path=FontFamilyName}">
 
-    <Window.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="../Resources/DarkTheme.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </Window.Resources>
+    <UserControl.DataContext>
+        <vm:IgracViewModel />
+    </UserControl.DataContext>
 
     <DockPanel Background="{DynamicResource MaterialDesignBackground}">
-        <shared:SharedMenu DockPanel.Dock="Top" />
-
         <Grid Background="{DynamicResource MaterialDesignBackground}">
             <StackPanel>
                 <DataGrid AutoGenerateColumns="False"
-                    IsReadOnly="True"
-                    SelectedItem="{Binding SelectedIgrac, Mode=TwoWay}"
-                    ItemsSource="{Binding Igracs}" 
-                    CanUserAddRows="False" 
-                    MaxHeight="150"
-                    HorizontalScrollBarVisibility="Auto" 
-                    FontSize="{Binding Source={x:Static properties:Settings.Default}, Path=FontSize}"
-                    VerticalScrollBarVisibility="Auto">
+                          IsReadOnly="True"
+                          SelectedItem="{Binding SelectedIgrac, Mode=TwoWay}"
+                          ItemsSource="{Binding Igracs}" 
+                          CanUserAddRows="False" 
+                          MaxHeight="150"
+                          HorizontalScrollBarVisibility="Auto" 
+                          FontSize="{Binding Source={x:Static properties:Settings.Default}, Path=FontSize}"
+                          VerticalScrollBarVisibility="Auto">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Ime" Binding="{Binding Ime}" Width="*" />
                         <DataGridTextColumn Header="Prezime" Binding="{Binding Prezime}" Width="*" />
@@ -120,9 +110,7 @@
                         </StackPanel>
                     </StackPanel>
                 </Grid>
-
-
             </StackPanel>
         </Grid>
     </DockPanel>
-</Window>
+</UserControl>

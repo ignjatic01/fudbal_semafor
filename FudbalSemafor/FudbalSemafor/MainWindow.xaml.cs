@@ -1,6 +1,7 @@
-﻿using FudbalSemafor.Properties;
+﻿using FudbalSemafor.Models;
+using FudbalSemafor.Properties;
 using FudbalSemafor.ViewModels;
-using FudbalSemafor.Views.Shared;
+using FudbalSemafor.Views;
 using MaterialDesignThemes.Wpf;
 using System.Text;
 using System.Windows;
@@ -24,75 +25,101 @@ namespace FudbalSemafor
         public MainWindow()
         {
             InitializeComponent();
-            MainContent.Content = new SharedMenu();
+            PrilagodiMeni();
+            SetAllNull();
+            MainContent.Content = new OpcijeView();
         }
 
-        private void ChangeThemeLight(object sender, RoutedEventArgs e)
+        private void OpenUtakmica(object sender, RoutedEventArgs e)
         {
-            SetPrimaryColor((Color)ColorConverter.ConvertFromString("#2196F3"), BaseTheme.Light);
-            SaveTheme("Light", (Color)ColorConverter.ConvertFromString("#2196F3"));
+            SetAllNull();
+            UtakmicaMenuItem.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString(Settings.Default.SelectedPrimaryColor));
+            MainContent.Content = new UtakmicaView();
         }
 
-        private void ChangeThemeDark(object sender, RoutedEventArgs e)
-        {
-            SetPrimaryColor(Color.FromRgb(139, 195, 74), BaseTheme.Dark);
 
-            SaveTheme("Dark", Color.FromRgb(139, 195, 74));
+        private void OpenOpcije(object sender, RoutedEventArgs e)
+        {
+            SetAllNull();
+            OpcijeMenuItem.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString(Settings.Default.SelectedPrimaryColor));
+            MainContent.Content = new OpcijeView();
         }
 
-        private void ChangeThemeMid(object sender, RoutedEventArgs e)
+        private void OpenIgrac(object sender, RoutedEventArgs e)
         {
-            SetPrimaryColor((Color)ColorConverter.ConvertFromString("#FF5722"), BaseTheme.Inherit);
-            SaveTheme("Inherit", (Color)ColorConverter.ConvertFromString("#FF5722"));
+            SetAllNull();
+            IgraciMenuItem.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString(Settings.Default.SelectedPrimaryColor));
+            MainContent.Content = new IgracView();
         }
 
-        private void ChangeFontSmall(object sender, RoutedEventArgs e)
+        private void OpenKartonTip(object sender, RoutedEventArgs e)
         {
-            Properties.Settings.Default.FontSize = 13;
-            Properties.Settings.Default.Save();
+            SetAllNull();
+            SifarniciMenuItem.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString(Settings.Default.SelectedPrimaryColor));
+            MainContent.Content = new KartonTipView();
         }
 
-        private void ChangeFontMid(object sender, RoutedEventArgs e)
+        private void OpenKlub(object sender, RoutedEventArgs e)
         {
-            Properties.Settings.Default.FontSize = 16;
-            Properties.Settings.Default.Save();
+            SetAllNull();
+            KluboviMenuItem.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString(Settings.Default.SelectedPrimaryColor));
+            MainContent.Content = new KlubView();
         }
 
-        private void ChangeFontBig(object sender, RoutedEventArgs e)
+        private void OpenPozicija(object sender, RoutedEventArgs e)
         {
-            Properties.Settings.Default.FontSize = 18;
-            Properties.Settings.Default.Save();
+            SetAllNull();
+            SifarniciMenuItem.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString(Settings.Default.SelectedPrimaryColor));
+            MainContent.Content = new PozicijaView();
         }
 
-        private void ChangeFontDefault(object sender, RoutedEventArgs e)
+        private void OpenStadion(object sender, RoutedEventArgs e)
         {
-            Properties.Settings.Default.FontFamilyName = "Segoe UI";
-            Properties.Settings.Default.Save();
+            SetAllNull();
+            StadioniMenuItem.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString(Settings.Default.SelectedPrimaryColor));
+            MainContent.Content = new StadionView();
         }
 
-        private void ChangeFontConsolas(object sender, RoutedEventArgs e)
+        private void OpenStatistic(Object sender, RoutedEventArgs e)
         {
-            Properties.Settings.Default.FontFamilyName = "Consolas";
-            Properties.Settings.Default.Save();
+            SetAllNull();
+            StatisticMenuItem.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString(Settings.Default.SelectedPrimaryColor));
+            MainContent.Content = new StatisticView();
         }
 
-        private static void SetPrimaryColor(Color color, BaseTheme bt)
+        private void SetAllNull()
         {
-            PaletteHelper paletteHelper = new PaletteHelper();
-
-            var theme = paletteHelper.GetTheme();
-
-            theme.SetBaseTheme(bt);
-            theme.SetPrimaryColor(color);
-
-            paletteHelper.SetTheme(theme);
+            IgraciMenuItem.Background = null;
+            KluboviMenuItem.Background = null;
+            StadioniMenuItem.Background = null;
+            UtakmicaMenuItem.Background = null;
+            SifarniciMenuItem.Background = null;
+            OpcijeMenuItem.Background = null;
+            StatisticMenuItem.Background = null;
         }
 
-        private void SaveTheme(string baseTheme, Color primaryColor)
+        private void PrilagodiMeni()
         {
-            Settings.Default.SelectedBaseTheme = baseTheme;
-            Settings.Default.SelectedPrimaryColor = primaryColor.ToString();
-            Settings.Default.Save();
+            switch (CurrentUser.Role)
+            {
+                case "ADMIN":
+                    break;
+
+                case "OPERATER":
+                    KluboviMenuItem.Visibility = Visibility.Collapsed;
+                    IgraciMenuItem.Visibility = Visibility.Collapsed;
+                    StadioniMenuItem.Visibility = Visibility.Collapsed;
+                    SifarniciMenuItem.Visibility = Visibility.Collapsed;
+                    break;
+
+                default:
+                    KluboviMenuItem.Visibility = Visibility.Collapsed;
+                    IgraciMenuItem.Visibility = Visibility.Collapsed;
+                    StadioniMenuItem.Visibility = Visibility.Collapsed;
+                    SifarniciMenuItem.Visibility = Visibility.Collapsed;
+                    UtakmicaMenuItem.Visibility = Visibility.Collapsed;
+                    break;
+            }
         }
     }
 }
