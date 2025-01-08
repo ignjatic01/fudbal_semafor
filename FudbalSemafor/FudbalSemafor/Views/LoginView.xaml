@@ -18,12 +18,12 @@
         <vm:LoginViewModel />
     </Window.DataContext>
     <StackPanel>
-        <TextBox materialDesign:HintAssist.Hint="Korisnicko ime" Width="250" Margin="0,70,0,5" Text="{Binding SelectedKorisnik.KorisnickoIme}"/>
-        <TextBox materialDesign:HintAssist.Hint="Lozinka" Width="250" Margin="0,20,0,5" Text="{Binding SelectedKorisnik.Lozinka}"/>
-        <Button Content="Prijavi se" Width="250" Height="35" 
+        <TextBox materialDesign:HintAssist.Hint="{DynamicResource UserName}" Width="250" Margin="0,70,0,5" Text="{Binding SelectedKorisnik.KorisnickoIme}"/>
+        <TextBox materialDesign:HintAssist.Hint="{DynamicResource Password}" Width="250" Margin="0,20,0,5" Text="{Binding SelectedKorisnik.Lozinka}"/>
+        <Button Content="{DynamicResource LogIn}" Width="250" Height="35" 
                 Margin="0,40,0,5" Command="{Binding LoginCommand}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}"
                 FontSize="{Binding Source={x:Static properties:Settings.Default}, Path=FontSize}"/>
-        <Button Content="Registracija" Width="250" Height="35" Margin="0,20,0,5" Click="OpenRegister" 
+        <Button Content="{DynamicResource Registration}" Width="250" Height="35" Margin="0,20,0,5" Click="OpenRegister" 
                 FontSize="{Binding Source={x:Static properties:Settings.Default}, Path=FontSize}"/>
     </StackPanel>
 </Window>

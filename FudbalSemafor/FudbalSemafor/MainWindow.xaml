@@ -12,15 +12,7 @@
         Title="MainWindow" Height="720" Width="1280"
         Foreground="{DynamicResource MaterialDesignBody}"
         FontFamily="{Binding Source={x:Static properties:Settings.Default}, Path=FontFamilyName}" >
-
-    <Window.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <!-- Uvoz stila iz Styles.xaml -->
-                <ResourceDictionary Source="Resources/DarkTheme.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </Window.Resources>
+    
     <DockPanel Background="{DynamicResource MaterialDesignBackground}">
         <!-- Navigacioni bar -->
         <!--<shared:SharedMenu x:Name="MainContent" DockPanel.Dock="Top" /> -->
@@ -29,16 +21,17 @@
           HorizontalAlignment="Left"
           FontSize="{Binding Source={x:Static properties:Settings.Default}, Path=FontSize}"
            FontFamily="{Binding Source={x:Static properties:Settings.Default}, Path=FontFamilyName}">
-                <MenuItem Header="Igrači" Click="OpenIgrac" x:Name="IgraciMenuItem" />
-                <MenuItem Header="Klubovi" Click="OpenKlub" x:Name="KluboviMenuItem" />
-                <MenuItem Header="Stadioni" Click="OpenStadion" x:Name="StadioniMenuItem" />
-                <MenuItem Header="Utakmice" Click="OpenUtakmica" x:Name="UtakmicaMenuItem" />
-                <MenuItem Header="Šifarnici" x:Name="SifarniciMenuItem" >
-                    <MenuItem Header="Tip kartona" Click="OpenKartonTip"/>
-                    <MenuItem Header="Pozicija" Click="OpenPozicija"/>
+                <MenuItem Header="{DynamicResource Players}" Click="OpenIgrac" x:Name="IgraciMenuItem" />
+                <MenuItem Header="{DynamicResource Clubs}" Click="OpenKlub" x:Name="KluboviMenuItem" />
+                <MenuItem Header="{DynamicResource Stadiums}" Click="OpenStadion" x:Name="StadioniMenuItem" />
+                <MenuItem Header="{DynamicResource Matches}" Click="OpenUtakmica" x:Name="UtakmicaMenuItem" />
+                <MenuItem Header="{DynamicResource Codebooks}" x:Name="SifarniciMenuItem" >
+                    <MenuItem Header="{DynamicResource CardType}" Click="OpenKartonTip"/>
+                    <MenuItem Header="{DynamicResource Position}" Click="OpenPozicija"/>
                 </MenuItem>
-                <MenuItem Header="Opcije" Click="OpenOpcije" x:Name="OpcijeMenuItem" />
-                <MenuItem Header="Statistika" Click="OpenStatistic" x:Name="StatisticMenuItem" />
+                <MenuItem Header="{DynamicResource Users}" Click="OpenKorisnici" x:Name="KorisniciMenuItem" />
+                <MenuItem Header="{DynamicResource Statistic}" Click="OpenStatistic" x:Name="StatisticMenuItem" />
+                <MenuItem Header="{DynamicResource Options}" Click="OpenOpcije" x:Name="OpcijeMenuItem" />
             </Menu>
         </StackPanel>
         <ContentControl x:Name="MainContent" />

@@ -4,6 +4,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:FudbalSemafor.Views"
+             xmlns:local2="clr-namespace:FudbalSemafor.Util"
              xmlns:shared="clr-namespace:FudbalSemafor.Views.Shared"
              xmlns:properties="clr-namespace:FudbalSemafor.Properties"
              xmlns:vm="clr-namespace:FudbalSemafor.ViewModels"
@@ -25,14 +26,14 @@
                           ItemsSource="{Binding Stadions}" 
                           CanUserAddRows="False" 
                           FontSize="{Binding Source={x:Static properties:Settings.Default}, Path=FontSize}"
-                          MaxHeight="150"
+                          MaxHeight="250"
                           HorizontalScrollBarVisibility="Auto" 
                           VerticalScrollBarVisibility="Auto">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Naziv stadiona" Binding="{Binding Naziv}" Width="*" />
-                        <DataGridTextColumn Header="Grad" Binding="{Binding Grad}" Width="*" />
-                        <DataGridTextColumn Header="Kapacitet" Binding="{Binding Kapacitet}" Width="*" />
-                        <DataGridTextColumn Header="Podloga" Binding="{Binding Podloga}" Width="*" />
+                        <DataGridTextColumn Header="{DynamicResource StadiumName}" Binding="{Binding Naziv}" Width="*" />
+                        <DataGridTextColumn Header="{DynamicResource City}" Binding="{Binding Grad}" Width="*" />
+                        <DataGridTextColumn Header="{DynamicResource Capacity}" Binding="{Binding Kapacitet}" Width="*" />
+                        <DataGridTextColumn Header="{DynamicResource Field}" Binding="{Binding Podloga}" Width="*" />
                     </DataGrid.Columns>
                 </DataGrid>
 
@@ -47,25 +48,85 @@
                     </Grid.ColumnDefinitions>
 
                     <StackPanel Grid.Column="0" Orientation="Vertical" Margin="0,10,0,0">
-                        <TextBox materialDesign:HintAssist.Hint="Naziv stadiona" Width="200" Margin="0,5,0,5" Text="{Binding NewStadion.Naziv}" Foreground="{DynamicResource MaterialDesignBody}"/>
-                        <TextBox materialDesign:HintAssist.Hint="Grad" Width="200" Margin="0,5,0,5"  Text="{Binding NewStadion.Grad}" Foreground="{DynamicResource MaterialDesignBody}"/>
-                        <TextBox materialDesign:HintAssist.Hint="Kapacitet" Width="200" Margin="0,5,0,5" Text="{Binding NewStadion.Kapacitet}" Foreground="{DynamicResource MaterialDesignBody}"/>
-                        <TextBox materialDesign:HintAssist.Hint="Podloga" Width="200" Margin="0,5,0,5" Text="{Binding NewStadion.Podloga}" Foreground="{DynamicResource MaterialDesignBody}"/>
-                        <Button Content="Dodaj Stadion" Width="150" Height="40" Margin="0,5,0,5" 
+                        <TextBox 
+                            materialDesign:HintAssist.Hint="{DynamicResource StadiumName}" 
+                            Width="200" 
+                            Margin="0,5,0,15" 
+                            Foreground="{DynamicResource MaterialDesignBody}">
+                            <TextBox.Text>
+                                <Binding Path="NewStadion.Naziv" UpdateSourceTrigger="PropertyChanged">
+                                    <Binding.ValidationRules>
+                                        <local2:RegexValidationRule 
+                                            Pattern="^[a-zA-Z]+$" 
+                                            ValidatesOnTargetUpdated="True" />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+
+                        <TextBox 
+                            materialDesign:HintAssist.Hint="{DynamicResource City}" 
+                            Width="200" 
+                            Margin="0,5,0,15"  
+                            Foreground="{DynamicResource MaterialDesignBody}">
+                            <TextBox.Text>
+                                <Binding Path="NewStadion.Grad" UpdateSourceTrigger="PropertyChanged">
+                                    <Binding.ValidationRules>
+                                        <local2:RegexValidationRule 
+                                            Pattern="^[a-zA-Z]+$" 
+                                            ValidatesOnTargetUpdated="True" />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+
+                        <TextBox 
+                            materialDesign:HintAssist.Hint="{DynamicResource Capacity}" 
+                            Width="200" 
+                            Margin="0,5,0,15"  
+                            Foreground="{DynamicResource MaterialDesignBody}">
+                            <TextBox.Text>
+                                <Binding Path="NewStadion.Kapacitet" UpdateSourceTrigger="PropertyChanged">
+                                    <Binding.ValidationRules>
+                                        <local2:RegexValidationRule 
+                                            Pattern="^[0-9]+$" 
+                                            ValidatesOnTargetUpdated="True" />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+
+                        <TextBox 
+                            materialDesign:HintAssist.Hint="{DynamicResource Field}" 
+                            Width="200" 
+                            Margin="0,5,0,15"  
+                            Foreground="{DynamicResource MaterialDesignBody}">
+                            <TextBox.Text>
+                                <Binding Path="NewStadion.Podloga" UpdateSourceTrigger="PropertyChanged">
+                                    <Binding.ValidationRules>
+                                        <local2:RegexValidationRule 
+                                            Pattern="^[a-zA-Z]+$" 
+                                            ValidatesOnTargetUpdated="True" />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+
+                        <Button Content="{DynamicResource AddStadium}" Width="150" Height="40" Margin="0,5,0,5" 
                                 Command="{Binding AddStadionCommand}" 
                                 FontSize="{Binding Source={x:Static properties:Settings.Default}, Path=FontSize}"/>
                     </StackPanel>
 
                     <StackPanel Grid.Column="1" Orientation="Vertical" Margin="0,10,0,0">
-                        <TextBox materialDesign:HintAssist.Hint="Naziv stadiona" Width="200" Margin="0,5,0,5" Text="{Binding SelectedStadion.Naziv}" Foreground="{DynamicResource MaterialDesignBody}"/>
-                        <TextBox materialDesign:HintAssist.Hint="Grad" Width="200" Margin="0,5,0,5"  Text="{Binding SelectedStadion.Grad}" Foreground="{DynamicResource MaterialDesignBody}"/>
-                        <TextBox materialDesign:HintAssist.Hint="Kapacitet" Width="200" Margin="0,5,0,5" Text="{Binding SelectedStadion.Kapacitet}" Foreground="{DynamicResource MaterialDesignBody}"/>
-                        <TextBox materialDesign:HintAssist.Hint="Podloga" Width="200" Margin="0,5,0,5"  Text="{Binding SelectedStadion.Podloga}" Foreground="{DynamicResource MaterialDesignBody}"/>
+                        <TextBox materialDesign:HintAssist.Hint="{DynamicResource StadiumName}" Width="200" Margin="0,5,0,5" Text="{Binding SelectedStadion.Naziv}" Foreground="{DynamicResource MaterialDesignBody}"/>
+                        <TextBox materialDesign:HintAssist.Hint="{DynamicResource City}" Width="200" Margin="0,5,0,5"  Text="{Binding SelectedStadion.Grad}" Foreground="{DynamicResource MaterialDesignBody}"/>
+                        <TextBox materialDesign:HintAssist.Hint="{DynamicResource Capacity}" Width="200" Margin="0,5,0,5" Text="{Binding SelectedStadion.Kapacitet}" Foreground="{DynamicResource MaterialDesignBody}"/>
+                        <TextBox materialDesign:HintAssist.Hint="{DynamicResource Field}" Width="200" Margin="0,5,0,5"  Text="{Binding SelectedStadion.Podloga}" Foreground="{DynamicResource MaterialDesignBody}"/>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                            <Button Content="Izmjeni" Width="100" Height="40" 
+                            <Button Content="{DynamicResource Edit}" Width="100" Height="40" 
                                     Margin="0,5,10,5" Command="{Binding EditStadionCommand}"
                                     FontSize="{Binding Source={x:Static properties:Settings.Default}, Path=FontSize}"/>
-                            <Button BorderBrush="#D32F2F" Background="#D32F2F" Content="Obriši" Width="100" Height="40" 
+                            <Button BorderBrush="#D32F2F" Background="#D32F2F" Content="{DynamicResource Delete}" Width="100" Height="40" 
                                     FontSize="{Binding Source={x:Static properties:Settings.Default}, Path=FontSize}"
                                     Margin="10,5,0,5" Command="{Binding DeleteStadionCommand}" />
                         </StackPanel>

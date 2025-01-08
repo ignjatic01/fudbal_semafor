@@ -4,6 +4,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:FudbalSemafor.Views"
+             xmlns:local2="clr-namespace:FudbalSemafor.Util"
              xmlns:shared="clr-namespace:FudbalSemafor.Views.Shared"
              xmlns:vm="clr-namespace:FudbalSemafor.ViewModels"
              xmlns:properties="clr-namespace:FudbalSemafor.Properties"
@@ -24,16 +25,16 @@
                           SelectedItem="{Binding SelectedIgrac, Mode=TwoWay}"
                           ItemsSource="{Binding Igracs}" 
                           CanUserAddRows="False" 
-                          MaxHeight="150"
+                          MaxHeight="250"
                           HorizontalScrollBarVisibility="Auto" 
                           FontSize="{Binding Source={x:Static properties:Settings.Default}, Path=FontSize}"
                           VerticalScrollBarVisibility="Auto">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Ime" Binding="{Binding Ime}" Width="*" />
-                        <DataGridTextColumn Header="Prezime" Binding="{Binding Prezime}" Width="*" />
-                        <DataGridTextColumn Header="Broj dresa" Binding="{Binding BrojDresa}" Width="*" />
-                        <DataGridTextColumn Header="Pozicija" Binding="{Binding PozicijaNavigation.OznakaPozicije}" Width="*" />
-                        <DataGridTextColumn Header="Klub" Binding="{Binding KlubNavigation.NazivKluba}" Width="*" />
+                        <DataGridTextColumn Header="{DynamicResource Name}" Binding="{Binding Ime}" Width="*" />
+                        <DataGridTextColumn Header="{DynamicResource Surname}" Binding="{Binding Prezime}" Width="*" />
+                        <DataGridTextColumn Header="{DynamicResource ShirtNumber}" Binding="{Binding BrojDresa}" Width="*" />
+                        <DataGridTextColumn Header="{DynamicResource Position}" Binding="{Binding PozicijaNavigation.OznakaPozicije}" Width="*" />
+                        <DataGridTextColumn Header="{DynamicResource Club}" Binding="{Binding KlubNavigation.NazivKluba}" Width="*" />
                     </DataGrid.Columns>
                 </DataGrid>
 
@@ -48,14 +49,53 @@
                     </Grid.ColumnDefinitions>
 
                     <StackPanel Grid.Column="0" Orientation="Vertical" Margin="0,10,0,0">
-                        <TextBox materialDesign:HintAssist.Hint="Ime" Width="200" Margin="0,5,0,5" Text="{Binding NewIgrac.Ime}" Foreground="{DynamicResource MaterialDesignBody}"/>
-                        <TextBox materialDesign:HintAssist.Hint="Prezime" Width="200" Margin="0,5,0,5"  Text="{Binding NewIgrac.Prezime}" Foreground="{DynamicResource MaterialDesignBody}"/>
-                        <TextBox materialDesign:HintAssist.Hint="Broj dresa" Width="200" Margin="0,5,0,5" Text="{Binding NewIgrac.BrojDresa}" Foreground="{DynamicResource MaterialDesignBody}"/>
+                        <TextBox 
+                            materialDesign:HintAssist.Hint="{DynamicResource Name}" 
+                            Width="200" 
+                            Margin="0,5,0,15" 
+                            Foreground="{DynamicResource MaterialDesignBody}">
+                            <TextBox.Text>
+                                <Binding Path="NewIgrac.Ime" UpdateSourceTrigger="PropertyChanged">
+                                    <Binding.ValidationRules>
+                                        <local2:RegexValidationRule Pattern="^[a-zA-Z]+$" ValidatesOnTargetUpdated="True" />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+
+                        <TextBox 
+                            materialDesign:HintAssist.Hint="{DynamicResource Surname}" 
+                            Width="200" 
+                            Margin="0,5,0,15" 
+                            Foreground="{DynamicResource MaterialDesignBody}">
+                            <TextBox.Text>
+                                <Binding Path="NewIgrac.Prezime" UpdateSourceTrigger="PropertyChanged">
+                                    <Binding.ValidationRules>
+                                        <local2:RegexValidationRule Pattern="^[a-zA-Z]+$" ValidatesOnTargetUpdated="True" />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+
+                        <TextBox 
+                            materialDesign:HintAssist.Hint="{DynamicResource ShirtNumber}" 
+                            Width="200" 
+                            Margin="0,5,0,15" 
+                            Foreground="{DynamicResource MaterialDesignBody}">
+                            <TextBox.Text>
+                                <Binding Path="NewIgrac.BrojDresa" UpdateSourceTrigger="PropertyChanged">
+                                    <Binding.ValidationRules>
+                                        <local2:RegexValidationRule Pattern="^\d+$" ValidatesOnTargetUpdated="True" />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+
                         <ComboBox
                             ItemsSource="{Binding Klubs}"
                             DisplayMemberPath="NazivKluba"
                             SelectedValue="{Binding SelectedKlub}"
-                            materialDesign:HintAssist.Hint="Izaberite klub"                              
+                            materialDesign:HintAssist.Hint="{DynamicResource SelectClub}"                              
                             IsEditable="True"
                             Width="200"
                             Margin="0,5,0,5"
@@ -65,26 +105,26 @@
                             ItemsSource="{Binding Pozicijas}"
                             DisplayMemberPath="NazivPozicije"
                             SelectedValue="{Binding SelectedPozicija}"
-                            materialDesign:HintAssist.Hint="Izaberite Poziciju"                              
+                            materialDesign:HintAssist.Hint="{DynamicResource SelectPosition}"                              
                             IsEditable="True"
                             Width="200"
                             Margin="0,5,0,5"
                             Foreground="{DynamicResource MaterialDesignBody}" />
-                        <Button Content="Dodaj igraca" Width="150" Height="40"
+                        <Button Content="{DynamicResource AddPlayer}" Width="150" Height="40"
                                 Margin="0,5,0,5" Command="{Binding AddIgracCommand}" 
                                 FontSize="{Binding Source={x:Static properties:Settings.Default}, Path=FontSize}"/>
                     </StackPanel>
 
                     <StackPanel Grid.Column="1" Orientation="Vertical" Margin="0,10,0,0">
-                        <TextBox materialDesign:HintAssist.Hint="Ime" Width="200" Margin="0,5,0,5" Text="{Binding SelectedIgrac.Ime}" Foreground="{DynamicResource MaterialDesignBody}"/>
-                        <TextBox materialDesign:HintAssist.Hint="Prezime" Width="200" Margin="0,5,0,5"  Text="{Binding SelectedIgrac.Prezime}" Foreground="{DynamicResource MaterialDesignBody}"/>
-                        <TextBox materialDesign:HintAssist.Hint="Broj dresa" Width="200" Margin="0,5,0,5" Text="{Binding SelectedIgrac.BrojDresa}" Foreground="{DynamicResource MaterialDesignBody}"/>
+                        <TextBox materialDesign:HintAssist.Hint="{DynamicResource Name}" Width="200" Margin="0,5,0,5" Text="{Binding SelectedIgrac.Ime}" Foreground="{DynamicResource MaterialDesignBody}"/>
+                        <TextBox materialDesign:HintAssist.Hint="{DynamicResource Surname}" Width="200" Margin="0,5,0,5"  Text="{Binding SelectedIgrac.Prezime}" Foreground="{DynamicResource MaterialDesignBody}"/>
+                        <TextBox materialDesign:HintAssist.Hint="{DynamicResource ShirtNumber}" Width="200" Margin="0,5,0,5" Text="{Binding SelectedIgrac.BrojDresa}" Foreground="{DynamicResource MaterialDesignBody}"/>
                         <ComboBox
                             ItemsSource="{Binding Klubs}"
                             DisplayMemberPath="NazivKluba"
                             SelectedValuePath="IdKlub"
                             SelectedValue="{Binding SelectedIgrac.Klub}"
-                            materialDesign:HintAssist.Hint="Izaberite klub"                              
+                            materialDesign:HintAssist.Hint="{DynamicResource SelectClub}"                              
                             IsEditable="True"
                             Width="200"
                             Margin="0,5,0,5"
@@ -95,17 +135,17 @@
                             DisplayMemberPath="NazivPozicije"
                             SelectedValuePath="OznakaPozicije"
                             SelectedValue="{Binding SelectedIgrac.Pozicija}"
-                            materialDesign:HintAssist.Hint="Izaberite Poziciju"                              
+                            materialDesign:HintAssist.Hint="{DynamicResource SelectPosition}"                              
                             IsEditable="True"
                             Width="200"
                             Margin="0,5,0,5"
                             Foreground="{DynamicResource MaterialDesignBody}" />
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                            <Button Content="Izmjeni" Width="100" Height="40"
+                            <Button Content="{DynamicResource Edit}" Width="100" Height="40"
                                     Margin="0,5,10,5" Command="{Binding EditIgracCommand}"
                                     FontSize="{Binding Source={x:Static properties:Settings.Default}, Path=FontSize}"/>
                             <Button BorderBrush="#D32F2F" Background="#D32F2F" Height="40" 
-                                    Content="Obriši" Width="100" Margin="10,5,0,5" Command="{Binding DeleteIgracCommand}" 
+                                    Content="{DynamicResource Delete}" Width="100" Margin="10,5,0,5" Command="{Binding DeleteIgracCommand}" 
                                     FontSize="{Binding Source={x:Static properties:Settings.Default}, Path=FontSize}"/>
                         </StackPanel>
                     </StackPanel>

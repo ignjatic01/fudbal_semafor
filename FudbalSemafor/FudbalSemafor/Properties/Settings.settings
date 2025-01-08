@@ -17,5 +17,14 @@
     <Setting Name="FontFamilyName" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
+    <Setting Name="YellowCard" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Žuti</Value>
+    </Setting>
+    <Setting Name="RedCard" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Crveni</Value>
+    </Setting>
+    <Setting Name="Lang" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -9,13 +9,14 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Timers;
+using Microsoft.EntityFrameworkCore;
 
 namespace FudbalSemafor.ViewModels
 {
     internal class SemaforViewModel : INotifyPropertyChanged
     {
-        public const string YellowCardWord = "Žuti";
-        public const string RedCardWord = "Crveni";
+        public string YellowCardWord = Properties.Settings.Default.YellowCard;
+        public string RedCardWord = Properties.Settings.Default.RedCard;
         public int IdUtakmica {  get; set; }
         private Utakmica _selectedUtakmica;
         public Utakmica SelectedUtakmica 
@@ -280,21 +281,49 @@ namespace FudbalSemafor.ViewModels
 
             Dogadjajs = new ObservableCollection<Dogadjaj>();
             ObservableCollection<Gol> gols = new ObservableCollection<Gol>(context.Gols.Where(g => g.Utakmica == IdUtakmica).ToList());
-            ObservableCollection<Karton> kartons = new ObservableCollection<Karton>(context.Kartons.Where(k => k.Utakmica == IdUtakmica).ToList());
+            ObservableCollection<Karton> kartons = new ObservableCollection<Karton>(context.Kartons.Include(k => k.KartonTipNavigation).Where(k => k.Utakmica == IdUtakmica).ToList());
 
             foreach (var gol in gols)
             {
                 Igrac temp = context.Igracs.FirstOrDefault(i => i.IdIgrac == gol.Igrac);
                 if (gol.Klub == SelectedUtakmica.Domaci)
                 {
-                    Dogadjajs.Add(new Dogadjaj("G: " + temp.Prezime + " " + gol.Minut + "'", HorizontalAlignment.Left));
+                    Dogadjajs.Add(new Dogadjaj("G: " + temp.Prezime + " " + gol.Minut + "'", HorizontalAlignment.Left, gol.Minut));
                 }
                 else if(gol.Klub == SelectedUtakmica.Gosti)
                 {
-                    Dogadjajs.Add(new Dogadjaj("G: " + temp.Prezime + " " + gol.Minut + "'", HorizontalAlignment.Right));
+                    Dogadjajs.Add(new Dogadjaj("G: " + temp.Prezime + " " + gol.Minut + "'", HorizontalAlignment.Right, gol.Minut));
                 }
             }
 
+            foreach (var karton in kartons)
+            {
+                Igrac temp = context.Igracs.FirstOrDefault(i => i.IdIgrac == karton.Igrac);
+                if (karton.KartonTipNavigation.Tip == YellowCardWord)
+                {
+                    if (temp.Klub == SelectedUtakmica.Domaci)
+                    {
+                        Dogadjajs.Add(new Dogadjaj("YC: " + temp.Prezime + " " + karton.Minut + "'", HorizontalAlignment.Left, karton.Minut));
+                    }
+                    else if (temp.Klub == SelectedUtakmica.Gosti)
+                    {
+                        Dogadjajs.Add(new Dogadjaj("YC: " + temp.Prezime + " " + karton.Minut + "'", HorizontalAlignment.Right, karton.Minut));
+                    }
+                }
+                else if (karton.KartonTipNavigation.Tip == RedCardWord)
+                {
+                    if (temp.Klub == SelectedUtakmica.Domaci)
+                    {
+                        Dogadjajs.Add(new Dogadjaj("RC: " + temp.Prezime + " " + karton.Minut + "'", HorizontalAlignment.Left, karton.Minut + 1));
+                    }
+                    else if (temp.Klub == SelectedUtakmica.Gosti)
+                    {
+                        Dogadjajs.Add(new Dogadjaj("RC: " + temp.Prezime + " " + karton.Minut + "'", HorizontalAlignment.Right, karton.Minut + 1));
+                    }
+                }
+            }
+
+            Dogadjajs = new ObservableCollection<Dogadjaj>(Dogadjajs.OrderBy(d => d.Minut).ToList());
 
             UbaciGostiCommand = new RelayCommand(UbaciGosti);
             IzbaciGostiCommand = new RelayCommand(IzbaciGosti);
@@ -458,6 +487,18 @@ namespace FudbalSemafor.ViewModels
                 Karton karton = GenerateKarton(YellowCardWord);
 
                 context.Kartons.Add(karton);
+                Igrac temp = context.Igracs.FirstOrDefault(i => i.IdIgrac == karton.Igrac);
+                if (karton.KartonTipNavigation.Tip == YellowCardWord)
+                {
+                    if (temp.Klub == SelectedUtakmica.Domaci)
+                    {
+                        Dogadjajs.Add(new Dogadjaj("YC: " + temp.Prezime + " " + karton.Minut + "'", HorizontalAlignment.Left, karton.Minut));
+                    }
+                    else if (temp.Klub == SelectedUtakmica.Gosti)
+                    {
+                        Dogadjajs.Add(new Dogadjaj("YC: " + temp.Prezime + " " + karton.Minut + "'", HorizontalAlignment.Right, karton.Minut));
+                    }
+                }
                 context.SaveChanges();
 
                 int numOfYellowCards = context.Kartons.Where(k => k.Igrac == SelectedIgrac.IdIgrac && k.KartonTip == karton.KartonTip && k.Utakmica == IdUtakmica).Count();
@@ -467,6 +508,16 @@ namespace FudbalSemafor.ViewModels
                     Karton redCard = GenerateKarton(RedCardWord);
 
                     context.Kartons.Add(redCard);
+
+                        if (temp.Klub == SelectedUtakmica.Domaci)
+                        {
+                            Dogadjajs.Add(new Dogadjaj("RC: " + temp.Prezime + " " + karton.Minut + "'", HorizontalAlignment.Left, karton.Minut + 1));
+                        }
+                        else if (temp.Klub == SelectedUtakmica.Gosti)
+                        {
+                            Dogadjajs.Add(new Dogadjaj("RC: " + temp.Prezime + " " + karton.Minut + "'", HorizontalAlignment.Right, karton.Minut + 1));
+                        }
+
                     context.SaveChanges();
 
                     if (SelectedIgrac.Klub == SelectedUtakmica.Domaci)
@@ -506,6 +557,18 @@ namespace FudbalSemafor.ViewModels
                 Karton karton = GenerateKarton(RedCardWord);
 
                 context.Kartons.Add(karton);
+                Igrac temp = context.Igracs.FirstOrDefault(i => i.IdIgrac == karton.Igrac);
+                if (karton.KartonTipNavigation.Tip == RedCardWord)
+                {
+                    if (temp.Klub == SelectedUtakmica.Domaci)
+                    {
+                        Dogadjajs.Add(new Dogadjaj("RC: " + temp.Prezime + " " + karton.Minut + "'", HorizontalAlignment.Left, karton.Minut));
+                    }
+                    else if (temp.Klub == SelectedUtakmica.Gosti)
+                    {
+                        Dogadjajs.Add(new Dogadjaj("RC: " + temp.Prezime + " " + karton.Minut + "'", HorizontalAlignment.Right, karton.Minut));
+                    }
+                }
                 context.SaveChanges();
 
                 if (SelectedIgrac.Klub == SelectedUtakmica.Domaci)
@@ -548,12 +611,12 @@ namespace FudbalSemafor.ViewModels
                 if (gol.Klub == Domaci.IdKlub)
                 {
                     existingUtakmica.GoloviDomaci += 1;
-                    Dogadjajs.Add(new Dogadjaj("G: " + temp.Prezime + " " + gol.Minut + "'", HorizontalAlignment.Left));
+                    Dogadjajs.Add(new Dogadjaj("G: " + temp.Prezime + " " + gol.Minut + "'", HorizontalAlignment.Left, gol.Minut));
                 }
                 else if (gol.Klub == Gosti.IdKlub)
                 {
                     existingUtakmica.GoloviGosti += 1;
-                    Dogadjajs.Add(new Dogadjaj("G: " + temp.Prezime + " " + gol.Minut + "'", HorizontalAlignment.Right));
+                    Dogadjajs.Add(new Dogadjaj("G: " + temp.Prezime + " " + gol.Minut + "'", HorizontalAlignment.Right, gol.Minut));
                 }
                 context.SaveChanges();
             }

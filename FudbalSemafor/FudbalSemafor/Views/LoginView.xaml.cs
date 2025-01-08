@@ -2,6 +2,7 @@
 using MaterialDesignThemes.Wpf;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,6 +26,10 @@ namespace FudbalSemafor.Views
         {
             InitializeComponent();
             LoadSavedTheme();
+            if (Properties.Settings.Default.Lang == "rs" || Properties.Settings.Default.Lang == "en")
+            {
+                SetLang(Properties.Settings.Default.Lang);
+            }
         }
 
         private void OpenRegister(Object sender, RoutedEventArgs e)
@@ -66,6 +71,37 @@ namespace FudbalSemafor.Views
             theme.SetPrimaryColor(color);
 
             paletteHelper.SetTheme(theme);
+        }
+
+        private void SetLang(String lang)
+        {
+            Thread.CurrentThread.CurrentCulture = new CultureInfo(lang);
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo(lang);
+
+            var languageResourceEn = Application.Current.Resources.MergedDictionaries
+                .FirstOrDefault(r => r.Source != null && r.Source.ToString().Contains("Dictionary-en.xaml"));
+
+            var languageResourceRs = Application.Current.Resources.MergedDictionaries
+                .FirstOrDefault(r => r.Source != null && r.Source.ToString().Contains("Dictionary-rs.xaml"));
+
+            if (languageResourceEn != null)
+            {
+                Application.Current.Resources.MergedDictionaries.Remove(languageResourceEn);
+            }
+
+            if (languageResourceRs != null)
+            {
+                Application.Current.Resources.MergedDictionaries.Remove(languageResourceRs);
+            }
+
+            ResourceDictionary resdict = new ResourceDictionary()
+            {
+                Source = new Uri($"/Resources/Dictionary-{lang}.xaml", UriKind.Relative)
+            };
+
+            Application.Current.Resources.MergedDictionaries.Add(resdict);
+            Properties.Settings.Default.Lang = lang;
+            Properties.Settings.Default.Save();
         }
     }
 }

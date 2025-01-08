@@ -82,5 +82,41 @@ namespace FudbalSemafor.Properties {
                 this["FontFamilyName"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Žuti")]
+        public string YellowCard {
+            get {
+                return ((string)(this["YellowCard"]));
+            }
+            set {
+                this["YellowCard"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Crveni")]
+        public string RedCard {
+            get {
+                return ((string)(this["RedCard"]));
+            }
+            set {
+                this["RedCard"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string Lang {
+            get {
+                return ((string)(this["Lang"]));
+            }
+            set {
+                this["Lang"] = value;
+            }
+        }
     }
 }

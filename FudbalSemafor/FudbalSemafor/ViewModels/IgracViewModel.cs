@@ -120,7 +120,7 @@ namespace FudbalSemafor.ViewModels
 
         public void AddIgrac()
         {
-            if (!string.IsNullOrWhiteSpace(NewIgrac.Ime) && !string.IsNullOrWhiteSpace(NewIgrac.Prezime) && NewIgrac.BrojDresa > 0)
+            if (!string.IsNullOrWhiteSpace(NewIgrac.Ime) && !string.IsNullOrWhiteSpace(NewIgrac.Prezime) && NewIgrac.BrojDresa > 0 && SelectedKlub != null && SelectedPozicija != null)
             {
                 try
                 {

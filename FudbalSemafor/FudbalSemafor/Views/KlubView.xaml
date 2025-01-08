@@ -29,14 +29,14 @@
                           SelectedItem="{Binding SelectedKlub, Mode=TwoWay}"
                           ItemsSource="{Binding Klubs}" 
                           CanUserAddRows="False" 
-                          MaxHeight="150"
+                          MaxHeight="250"
                           HorizontalScrollBarVisibility="Auto" 
                           VerticalScrollBarVisibility="Auto"
                           FontSize="{Binding Source={x:Static properties:Settings.Default}, Path=FontSize}">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="ID" Binding="{Binding IdKlub}" Width="*" />
-                        <DataGridTextColumn Header="Naziv Kluba" Binding="{Binding NazivKluba}" Width="*" />
-                        <DataGridTextColumn Header="Grad" Binding="{Binding Grad}" Width="*" />
+                        <DataGridTextColumn Header="{DynamicResource ClubName}" Binding="{Binding NazivKluba}" Width="*" />
+                        <DataGridTextColumn Header="{DynamicResource City}" Binding="{Binding Grad}" Width="*" />
                     </DataGrid.Columns>
                 </DataGrid>
 
@@ -51,13 +51,39 @@
                     </Grid.ColumnDefinitions>
 
                     <StackPanel Grid.Column="0" Orientation="Vertical" Margin="0,10,0,0">
-                        <TextBox materialDesign:HintAssist.Hint="Naziv kluba" Width="350" Margin="0,5,0,5" Text="{Binding NewKlub.NazivKluba}" Foreground="{DynamicResource MaterialDesignBody}"/>
-                        <TextBox materialDesign:HintAssist.Hint="Grad" Width="350" Margin="0,5,0,5"  Text="{Binding NewKlub.Grad}" Foreground="{DynamicResource MaterialDesignBody}"/>
+                        <TextBox 
+                            materialDesign:HintAssist.Hint="{DynamicResource ClubName}" 
+                            Width="350" 
+                            Margin="0,5,0,15" 
+    
+                            Foreground="{DynamicResource MaterialDesignBody}">
+                            <TextBox.Text>
+                                <Binding Path="NewKlub.NazivKluba" UpdateSourceTrigger="PropertyChanged">
+                                    <Binding.ValidationRules>
+                                        <local2:RegexValidationRule Pattern="^[a-zA-Z0-9\s]+$" ValidatesOnTargetUpdated="True" />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                        <TextBox 
+                            materialDesign:HintAssist.Hint="{DynamicResource City}" 
+                            Width="350" 
+                            Margin="0,5,0,15"  
+                            Foreground="{DynamicResource MaterialDesignBody}">
+                            <TextBox.Text>
+                                <Binding Path="NewKlub.Grad" UpdateSourceTrigger="PropertyChanged">
+                                    <Binding.ValidationRules>
+                                        <local2:RegexValidationRule Pattern="^[a-zA-Z\s]+$" ValidatesOnTargetUpdated="True" />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+
                         <StackPanel Orientation="Horizontal" Margin="0,10,20,10">
                             <Button 
                                 BorderBrush="#FFC107" 
                                 Background="#FFC107" 
-                                Content="Dodaj sliku" 
+                                Content="{DynamicResource AddImage}" 
                                 Command="{Binding DodajSlikuCommand}" 
                                 Width="150" Height="40"
                                 Margin="150,0,10,0" 
@@ -70,20 +96,20 @@
                                 Margin="20,0,10,0"/>
                         </StackPanel>
 
-                        <Button Content="Dodaj Klub" Width="150" Height="40"
+                        <Button Content="{DynamicResource AddClub}" Width="150" Height="40"
                                 Margin="0,5,0,5" Command="{Binding AddKlubCommand}" 
                                 FontSize="{Binding Source={x:Static properties:Settings.Default}, Path=FontSize}"/>
                     </StackPanel>
 
                     <StackPanel Grid.Column="1" Orientation="Vertical" Margin="0,10,0,0">
-                        <TextBox materialDesign:HintAssist.Hint="Naziv kluba" Width="350" Margin="0,5,0,5" Text="{Binding SelectedKlub.NazivKluba}" Foreground="{DynamicResource MaterialDesignBody}"/>
-                        <TextBox materialDesign:HintAssist.Hint="Grad" Width="350" Margin="0,5,0,5"  Text="{Binding SelectedKlub.Grad}" Foreground="{DynamicResource MaterialDesignBody}"/>
-                        <TextBox materialDesign:HintAssist.Hint="Grad" Width="350" Margin="0,5,0,5"  Text="{Binding SelectedKlub.Slika}" Foreground="{DynamicResource MaterialDesignBody}"/>
+                        <TextBox materialDesign:HintAssist.Hint="{DynamicResource ClubName}" Width="350" Margin="0,5,0,5" Text="{Binding SelectedKlub.NazivKluba}" Foreground="{DynamicResource MaterialDesignBody}"/>
+                        <TextBox materialDesign:HintAssist.Hint="{DynamicResource City}" Width="350" Margin="0,5,0,5"  Text="{Binding SelectedKlub.Grad}" Foreground="{DynamicResource MaterialDesignBody}"/>
+                        <TextBlock materialDesign:HintAssist.Hint="{DynamicResource ImgUrl}" Width="350" Margin="0,5,0,5"  Text="{Binding SelectedKlub.Slika}" Foreground="{DynamicResource MaterialDesignBody}"/>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                            <Button Content="Izmjeni" Width="100" Height="40" 
+                            <Button Content="{DynamicResource Edit}" Width="100" Height="40" 
                                     Margin="0,5,10,5" Command="{Binding EditKlubCommand}"
                                     FontSize="{Binding Source={x:Static properties:Settings.Default}, Path=FontSize}"/>
-                            <Button BorderBrush="#D32F2F" Background="#D32F2F" Content="Obriši" Width="100" Height="40" 
+                            <Button BorderBrush="#D32F2F" Background="#D32F2F" Content="{DynamicResource Delete}" Width="100" Height="40" 
                                     Margin="10,5,0,5" Command="{Binding DeleteKlubCommand}" 
                                     FontSize="{Binding Source={x:Static properties:Settings.Default}, Path=FontSize}"/>
                         </StackPanel>

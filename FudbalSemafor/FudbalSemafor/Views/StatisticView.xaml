@@ -19,27 +19,90 @@
     </UserControl.DataContext>
     <Grid>
         <DockPanel Background="{DynamicResource MaterialDesignBackground}">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
+            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
 
-                <!-- Definisanje redova -->
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="3*" />
-                    <RowDefinition Height="3*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="3*" />
-                </Grid.RowDefinitions>
+                    <!-- Definisanje redova -->
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="3*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="3*" />
+                        <RowDefinition Height="3*" />
+                    </Grid.RowDefinitions>
+                    <DataGrid Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" 
+                              Name="IgracDataGrid" 
+                              AutoGenerateColumns="False"
+                              IsReadOnly="True"
+                              HorizontalAlignment="Stretch" 
+                              VerticalAlignment="Stretch"
+                              ItemsSource="{Binding IgracStatistikas}"
+                              CanUserAddRows="False" 
+                              MaxHeight="250"
+                              HorizontalScrollBarVisibility="Auto" 
+                              VerticalScrollBarVisibility="Auto"
+                              FontSize="{Binding Source={x:Static properties:Settings.Default}, Path=FontSize}"
+                              Foreground="{DynamicResource MaterialDesignBody}">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="{DynamicResource Name}" Binding="{Binding Ime}" Width="*"/>
+                            <DataGridTextColumn Header="{DynamicResource Surname}" Binding="{Binding Prezime}" Width="*"/>
+                            <DataGridTextColumn Header="{DynamicResource Club}" Binding="{Binding Klub}" Width="*"/>
+                            <DataGridTextColumn Header="{DynamicResource GoalNum}" Binding="{Binding BrojGolova}" Width="*"/>
+                            <DataGridTextColumn Header="{DynamicResource YellowNum}" Binding="{Binding BrojZutihKartona}" Width="*"/>
+                            <DataGridTextColumn Header="{DynamicResource RedNum}" Binding="{Binding BrojCrvenihKartona}" Width="*"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
 
-                <lvc:PieChart Grid.Row="1" Grid.Column="0">
-                    <lvc:PieChart.Series>
-                        <lvc:PieSeries Title="Zuti kartoni" Values="{Binding ZutiKartoni}" Fill="Yellow"/>
-                        <lvc:PieSeries Title="Crveni kartoni" Values="{Binding CrveniKartoni}" Fill="Red"/>
-                    </lvc:PieChart.Series>
-                </lvc:PieChart>
-            </Grid>
+                    <TextBlock Grid.Row="1" Grid.Column="0" Foreground="{DynamicResource MaterialDesignBody}"
+                               Margin="40, 10, 10, 10" Text="{DynamicResource Cards}" />
+                    <TextBlock Grid.Row="1" Grid.Column="1" Foreground="{DynamicResource MaterialDesignBody}"
+                               Margin="40, 10, 10, 10" Text="{DynamicResource Goals}"/>
+
+                    <lvc:PieChart Grid.Row="2" Grid.Column="0" Foreground="Black" MinHeight="150">
+                        <lvc:PieChart.Series>
+                            <lvc:PieSeries Title="{DynamicResource YellowCards}" Values="{Binding ZutiKartoni}" Fill="Yellow"/>
+                            <lvc:PieSeries Title="{DynamicResource RedCards}" Values="{Binding CrveniKartoni}" Fill="Red"/>
+                        </lvc:PieChart.Series>
+                    </lvc:PieChart>
+
+                    <lvc:PieChart Grid.Row="2" Grid.Column="2" Foreground="Black" MinHeight="150">
+                        <lvc:PieChart.Series>
+                            <lvc:PieSeries Title="{DynamicResource Goalscorers}" Values="{Binding Strijelci}" Fill="Lime"/>
+                            <lvc:PieSeries Title="{DynamicResource NoGoalPlayers}" Values="{Binding NeStrijelci}" Fill="Coral"/>
+                        </lvc:PieChart.Series>
+                    </lvc:PieChart>
+
+                    <DataGrid Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="3" 
+                        Margin="0, 20, 0, 0"
+                        Name="KlubDataGrid" 
+                        AutoGenerateColumns="False"
+                        IsReadOnly="True"
+                        HorizontalAlignment="Stretch" 
+                        VerticalAlignment="Stretch"
+                        ItemsSource="{Binding KlubStatistikas}"
+                        CanUserAddRows="False" 
+                        MaxHeight="250"
+                        HorizontalScrollBarVisibility="Auto" 
+                        VerticalScrollBarVisibility="Auto"
+                        FontSize="{Binding Source={x:Static properties:Settings.Default}, Path=FontSize}"
+                        Foreground="{DynamicResource MaterialDesignBody}">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="{DynamicResource ClubName}" Binding="{Binding Naziv}" Width="*"/>
+                            <DataGridTextColumn Header="{DynamicResource City}" Binding="{Binding Grad}" Width="*"/>
+                            <DataGridTextColumn Header="{DynamicResource Matches}" Binding="{Binding BrojUtakmica}" Width="*"/>
+                            <DataGridTextColumn Header="{DynamicResource Wins}" Binding="{Binding BrojPobjeda}" Width="*"/>
+                            <DataGridTextColumn Header="{DynamicResource Draws}" Binding="{Binding  BrojNerijesenih}" Width="*"/>
+                            <DataGridTextColumn Header="{DynamicResource Loses}" Binding="{Binding BrojPoraza}" Width="*"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+
+                </Grid>
+            </ScrollViewer>
+
         </DockPanel>
     </Grid>
 </UserControl>

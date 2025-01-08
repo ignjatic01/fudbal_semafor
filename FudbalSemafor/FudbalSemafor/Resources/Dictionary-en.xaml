@@ -1,0 +1,104 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:System="clr-namespace:System;assembly=System.Runtime">
+
+    <System:String x:Key="SmallFont">Small font</System:String>
+    <System:String x:Key="MidFont">Middle font</System:String>
+    <System:String x:Key="BigFont">Big font</System:String>
+    <System:String x:Key="Default">Default</System:String>
+    <System:String x:Key="Serbian">Serbian</System:String>
+    <System:String x:Key="English">English</System:String>
+    <System:String x:Key="FontAndLang">Font and language:</System:String>
+    <System:String x:Key="FontSize">Font size:</System:String>
+    <System:String x:Key="DarkOrange">Dark/orange</System:String>
+    <System:String x:Key="DarkAndGreen">Dark/green</System:String>
+    <System:String x:Key="Light">Light</System:String>
+    <System:String x:Key="WindowColor">Base theme:</System:String>
+
+    <System:String x:Key="Name">Name</System:String>
+    <System:String x:Key="Surname">Surname</System:String>
+    <System:String x:Key="ShirtNumber">Shirt number</System:String>
+    <System:String x:Key="Position">Position</System:String>
+    <System:String x:Key="Club">Club</System:String>
+    <System:String x:Key="SelectPosition">Select position</System:String>
+    <System:String x:Key="Players">Players</System:String>
+    <System:String x:Key="SelectClub">Select club</System:String>
+    <System:String x:Key="Clubs">Clubs</System:String>
+    <System:String x:Key="AddPlayer">Add player</System:String>
+    <System:String x:Key="Stadiums">Stadiums</System:String>
+    <System:String x:Key="Edit">Edit</System:String>
+    <System:String x:Key="Delete">Delete</System:String>
+
+    <System:String x:Key="Codebooks">Codebooks</System:String>
+    <System:String x:Key="CardType">Type of card</System:String>
+    <System:String x:Key="CardTypeName">Name of card type</System:String>
+    <System:String x:Key="Add">Add</System:String>
+
+    <System:String x:Key="PositionID">Position Id</System:String>
+    <System:String x:Key="Users">Users</System:String>
+    <System:String x:Key="PositionName">Name of position</System:String>
+    <System:String x:Key="AddPosition">Add position</System:String>
+
+    <System:String x:Key="Options">Options</System:String>
+    <System:String x:Key="ClubName">Club name</System:String>
+    <System:String x:Key="City">City</System:String>
+    <System:String x:Key="AddImage">Add image</System:String>
+    <System:String x:Key="AddClub">Add club</System:String>
+    <System:String x:Key="ImgUrl">Image URL</System:String>
+
+    <System:String x:Key="UserName">Username</System:String>
+    <System:String x:Key="UserType">User type</System:String>
+    <System:String x:Key="SelectRole">Select role</System:String>
+
+    <System:String x:Key="Password">Password</System:String>
+    <System:String x:Key="Registration">Registration</System:String>
+    <System:String x:Key="LogIn">Log in</System:String>
+    
+    <System:String x:Key="RegisterIn">Register</System:String>
+    
+    <System:String x:Key="Starters">Starters</System:String>
+    <System:String x:Key="Number">Number</System:String>
+    <System:String x:Key="Remove">Remove</System:String>
+    <System:String x:Key="Subs">Substitutes</System:String>
+    <System:String x:Key="Enter">Enter</System:String>
+    <System:String x:Key="Autogol">Own goal</System:String>
+    <System:String x:Key="SelectPlayer">Select player</System:String>
+    <System:String x:Key="Goal">Goal</System:String>
+    <System:String x:Key="Substitution">Substitution</System:String>
+    <System:String x:Key="YellowCard">Yellow card</System:String>
+    <System:String x:Key="RedCard">Red card</System:String>
+    <System:String x:Key="SndPeriod">2nd half</System:String>
+
+    <System:String x:Key="StadiumName">Name of stadium</System:String>
+    <System:String x:Key="Capacity">Capacity</System:String>
+    <System:String x:Key="Field">Type of field</System:String>
+    <System:String x:Key="AddStadium">Add stadium</System:String>
+
+    <System:String x:Key="GoalNum">Number of goals</System:String>
+    <System:String x:Key="YellowNum">Number of yellows</System:String>
+    <System:String x:Key="RedNum">Number of reds</System:String>
+    <System:String x:Key="Cards">Cards</System:String>
+    <System:String x:Key="Goals">Goals</System:String>
+    <System:String x:Key="YellowCards">Yellow cards</System:String>
+    <System:String x:Key="RedCards">Red cards</System:String>
+    <System:String x:Key="Goalscorers">Goalscorers</System:String>
+    <System:String x:Key="NoGoalPlayers">Players without goals</System:String>
+    <System:String x:Key="Matches">Matches</System:String>
+    <System:String x:Key="Wins">Wins</System:String>
+    <System:String x:Key="Draws">Draws</System:String>
+    <System:String x:Key="Loses">Loses</System:String>
+
+    <System:String x:Key="AddMatch">Add match</System:String>
+    <System:String x:Key="Home">Home</System:String>
+    <System:String x:Key="Away">Away</System:String>
+    <System:String x:Key="HomeGoals">Home team goals</System:String>
+    <System:String x:Key="AwayGoals">Away team goals</System:String>
+    <System:String x:Key="Stadium">Stadium</System:String>
+    <System:String x:Key="SelectHomeTeam">Select home team</System:String>
+    <System:String x:Key="SelectAwayTeam">Select away team</System:String>
+    <System:String x:Key="SelectStadium">Select stadium</System:String>
+    <System:String x:Key="Open">Open</System:String>
+    <System:String x:Key="Statistic">Statistic</System:String>
+    
+    
+</ResourceDictionary>

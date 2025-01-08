@@ -4,12 +4,13 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FudbalSemafor.Views"
+        xmlns:local2="clr-namespace:FudbalSemafor.Util"
         xmlns:shared="clr-namespace:FudbalSemafor.Views.Shared"
         xmlns:properties="clr-namespace:FudbalSemafor.Properties"
         xmlns:vm="clr-namespace:FudbalSemafor.ViewModels"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="RegisterView" Height="400" Width="300"
+        Title="RegisterView" Height="430" Width="300"
         Background="{DynamicResource MaterialDesignBackground}"
         Foreground="{DynamicResource MaterialDesignBody}"
         FontSize="{Binding Source={x:Static properties:Settings.Default}, Path=FontSize}"
@@ -19,14 +20,66 @@
         <vm:RegisterViewModel />
     </Window.DataContext>
     <StackPanel>
-        <TextBox materialDesign:HintAssist.Hint="Ime" Width="250" Margin="0,55,0,5" Text="{Binding NewKorisnik.Ime}"/>
-        <TextBox materialDesign:HintAssist.Hint="Prezime" Width="250" Margin="0,10,0,5" Text="{Binding NewKorisnik.Prezime}"/>
-        <TextBox materialDesign:HintAssist.Hint="Korisnicko ime" Width="250" Margin="0,10,0,5" Text="{Binding NewKorisnik.KorisnickoIme}"/>
-        <TextBox materialDesign:HintAssist.Hint="Lozinka" Width="250" Margin="0,10,0,5" Text="{Binding NewKorisnik.Lozinka}"/>
-        <Button Content="Registruj se" Width="250" Height="35" 
+        <TextBox 
+            materialDesign:HintAssist.Hint="{DynamicResource Name}" 
+            Width="250" 
+            Margin="0,55,0,15">
+            <TextBox.Text>
+                <Binding Path="NewKorisnik.Ime" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <local2:RegexValidationRule Pattern="^[a-zA-Z0-9]+$" ValidatesOnTargetUpdated="True" />
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+
+        <TextBox 
+            materialDesign:HintAssist.Hint="{DynamicResource Surname}" 
+            Width="250" 
+            Margin="0,10,0,15">
+            <TextBox.Text>
+                <Binding Path="NewKorisnik.Prezime" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <local2:RegexValidationRule Pattern="^[a-zA-Z0-9]+$" ValidatesOnTargetUpdated="True" />
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+
+        <TextBox 
+            materialDesign:HintAssist.Hint="{DynamicResource UserName}" 
+            Width="250" 
+            Margin="0,10,0,15">
+            <TextBox.Text>
+                <Binding Path="NewKorisnik.KorisnickoIme" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <local2:RegexValidationRule 
+                    Pattern="^[a-zA-Z0-9]+$" 
+                    ValidatesOnTargetUpdated="True" />
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+
+        <TextBox 
+            materialDesign:HintAssist.Hint="{DynamicResource Password}" 
+            Width="250" 
+            Margin="0,10,0,5">
+            <TextBox.Text>
+                <Binding Path="NewKorisnik.Lozinka" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <local2:RegexValidationRule 
+                    Pattern="^.{1,}$" 
+                    ValidatesOnTargetUpdated="True" />
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+
+        <Button Content="{DynamicResource RegisterIn}" Width="250" Height="35" 
                 Margin="0,20,0,5" Command="{Binding RegisterCommand}" 
                 FontSize="{Binding Source={x:Static properties:Settings.Default}, Path=FontSize}"/>
-        <Button Content="Prijava" Width="250" Height="35" Margin="0,20,0,5" Click="OpenLogin"
+        <Button Content="{DynamicResource LogIn}" Width="250" Height="35" Margin="0,20,0,5" Click="OpenLogin"
                 FontSize="{Binding Source={x:Static properties:Settings.Default}, Path=FontSize}"/>
     </StackPanel>
 </Window>

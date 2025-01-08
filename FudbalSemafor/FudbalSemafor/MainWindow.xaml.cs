@@ -26,7 +26,6 @@ namespace FudbalSemafor
         {
             InitializeComponent();
             PrilagodiMeni();
-            SetAllNull();
             MainContent.Content = new OpcijeView();
         }
 
@@ -87,6 +86,13 @@ namespace FudbalSemafor
             MainContent.Content = new StatisticView();
         }
 
+        private void OpenKorisnici(Object sender, RoutedEventArgs e)
+        {
+            SetAllNull();
+            KorisniciMenuItem.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString(Settings.Default.SelectedPrimaryColor));
+            MainContent.Content = new KorisniciView();
+        }
+
         private void SetAllNull()
         {
             IgraciMenuItem.Background = null;
@@ -96,6 +102,7 @@ namespace FudbalSemafor
             SifarniciMenuItem.Background = null;
             OpcijeMenuItem.Background = null;
             StatisticMenuItem.Background = null;
+            KorisniciMenuItem.Background = null;
         }
 
         private void PrilagodiMeni()
@@ -110,6 +117,7 @@ namespace FudbalSemafor
                     IgraciMenuItem.Visibility = Visibility.Collapsed;
                     StadioniMenuItem.Visibility = Visibility.Collapsed;
                     SifarniciMenuItem.Visibility = Visibility.Collapsed;
+                    KorisniciMenuItem.Visibility = Visibility.Collapsed;
                     break;
 
                 default:
@@ -118,6 +126,7 @@ namespace FudbalSemafor
                     StadioniMenuItem.Visibility = Visibility.Collapsed;
                     SifarniciMenuItem.Visibility = Visibility.Collapsed;
                     UtakmicaMenuItem.Visibility = Visibility.Collapsed;
+                    KorisniciMenuItem.Visibility = Visibility.Collapsed;
                     break;
             }
         }

@@ -16,6 +16,9 @@
     <Compile Update="Views\KlubView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\KorisniciView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\LoginView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -48,7 +51,10 @@
     <Page Update="MainWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Resources\DarkTheme.xaml">
+    <Page Update="Resources\Dictionary-en.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Resources\Dictionary-rs.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\IgracView.xaml">
@@ -58,6 +64,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\KlubView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\KorisniciView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\LoginView.xaml">

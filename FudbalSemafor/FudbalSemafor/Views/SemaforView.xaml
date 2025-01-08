@@ -77,7 +77,7 @@
                    Margin="0, 0, 15, 0"/>
         <Image Grid.Column="6" Grid.Row="0" Source="{Binding Gosti.Slika, Converter={StaticResource RelativeToAbsolutePathConverter}}" Width="125" Height="125" />
         <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
-            <TextBlock Text="Starters" 
+            <TextBlock Text="{DynamicResource Starters}" 
                 FontSize="18" 
                 Foreground="{DynamicResource MaterialDesignBody}" 
                 Margin="5,5,0,5"
@@ -95,13 +95,13 @@
                 HeadersVisibility="None"
                 Foreground="{DynamicResource MaterialDesignBody}">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Broj" Binding="{Binding BrojDresa}" Width="*" Foreground="{DynamicResource MaterialDesignBody}" />
-                    <DataGridTextColumn Header="Ime" Binding="{Binding Ime}" Width="2*" Foreground="{DynamicResource MaterialDesignBody}" />
-                    <DataGridTextColumn Header="Prezime" Binding="{Binding Prezime}" Width="2*" Foreground="{DynamicResource MaterialDesignBody}" />
+                    <DataGridTextColumn Header="{DynamicResource Number}" Binding="{Binding BrojDresa}" Width="*" Foreground="{DynamicResource MaterialDesignBody}" />
+                    <DataGridTextColumn Header="{DynamicResource Name}" Binding="{Binding Ime}" Width="2*" Foreground="{DynamicResource MaterialDesignBody}" />
+                    <DataGridTextColumn Header="{DynamicResource Surname}" Binding="{Binding Prezime}" Width="3*" Foreground="{DynamicResource MaterialDesignBody}" />
                     <DataGridTemplateColumn Width="2*">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button x:Name="DomaciIzbacivanje" Content="Izbaci"
+                                <Button x:Name="DomaciIzbacivanje" Content="{DynamicResource Remove}"
                                         Padding="0" MaxHeight="25" MaxWidth="70"
                         BorderBrush="#D32F2F" Background="#D32F2F"
                         Command="{Binding DataContext.IzbaciDomaciCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
@@ -116,7 +116,7 @@
 
 
         <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
-            <TextBlock Text="Subs" 
+            <TextBlock Text="{DynamicResource Subs}" 
                    FontSize="18" 
                    Foreground="{DynamicResource MaterialDesignBody}" 
                    Margin="5,5,0,5"
@@ -134,13 +134,13 @@
                 HeadersVisibility="None"
                 Foreground="{DynamicResource MaterialDesignBody}">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Broj" Binding="{Binding BrojDresa}" Width="*"  Foreground="{DynamicResource MaterialDesignBody}" />
-                    <DataGridTextColumn Header="Ime" Binding="{Binding Ime}" Width="2*" Foreground="{DynamicResource MaterialDesignBody}" />
-                    <DataGridTextColumn Header="Prezime" Binding="{Binding Prezime}" Width="2*" Foreground="{DynamicResource MaterialDesignBody}" />
+                    <DataGridTextColumn Header="{DynamicResource Number}" Binding="{Binding BrojDresa}" Width="*"  Foreground="{DynamicResource MaterialDesignBody}" />
+                    <DataGridTextColumn Header="{DynamicResource Name}" Binding="{Binding Ime}" Width="2*" Foreground="{DynamicResource MaterialDesignBody}" />
+                    <DataGridTextColumn Header="{DynamicResource Surname}" Binding="{Binding Prezime}" Width="3*" Foreground="{DynamicResource MaterialDesignBody}" />
                     <DataGridTemplateColumn Width="2*">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button x:Name="DomaciUbacivanje" Content="Ubaci"
+                                <Button x:Name="DomaciUbacivanje" Content="{DynamicResource Enter}"
                                         Padding="0" MaxHeight="25" MaxWidth="70"
                                         BorderBrush="#388E3C" Background="#388E3C"
                                         Command="{Binding DataContext.UbaciDomaciCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
@@ -154,7 +154,7 @@
         </StackPanel>
 
         <StackPanel Grid.Row="1" Grid.Column="5" Grid.ColumnSpan="2">
-            <TextBlock Text="Starters" 
+            <TextBlock Text="{DynamicResource Starters}" 
                 FontSize="18" 
                 Foreground="{DynamicResource MaterialDesignBody}" 
                 Margin="5,5,0,5"
@@ -172,13 +172,13 @@
                 HeadersVisibility="None"
                 Foreground="{DynamicResource MaterialDesignBody}">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Broj" Binding="{Binding BrojDresa}" Width="*" Foreground="{DynamicResource MaterialDesignBody}" />
-                    <DataGridTextColumn Header="Ime" Binding="{Binding Ime}" Width="2*" Foreground="{DynamicResource MaterialDesignBody}" />
-                    <DataGridTextColumn Header="Prezime" Binding="{Binding Prezime}" Width="2*" Foreground="{DynamicResource MaterialDesignBody}" />
+                    <DataGridTextColumn Header="{DynamicResource Number}" Binding="{Binding BrojDresa}" Width="*" Foreground="{DynamicResource MaterialDesignBody}" />
+                    <DataGridTextColumn Header="{DynamicResource Name}" Binding="{Binding Ime}" Width="2*" Foreground="{DynamicResource MaterialDesignBody}" />
+                    <DataGridTextColumn Header="{DynamicResource Surname}" Binding="{Binding Prezime}" Width="3*" Foreground="{DynamicResource MaterialDesignBody}" />
                     <DataGridTemplateColumn Width="2*">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button x:Name="GostiIzbacivanje" Content="Izbaci"
+                                <Button x:Name="GostiIzbacivanje" Content="{DynamicResource Remove}"
                                     Padding="0" MaxHeight="25" MaxWidth="70"
                                     BorderBrush="#D32F2F" Background="#D32F2F"
                                     Command="{Binding DataContext.IzbaciGostiCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
@@ -193,7 +193,7 @@
 
 
         <StackPanel Grid.Row="2" Grid.Column="5" Grid.ColumnSpan="2">
-            <TextBlock Text="Subs" 
+            <TextBlock Text="{DynamicResource Subs}" 
                    FontSize="18" 
                    Foreground="{DynamicResource MaterialDesignBody}" 
                    Margin="5,5,0,5"
@@ -211,13 +211,13 @@
                 HeadersVisibility="None"
                 Foreground="{DynamicResource MaterialDesignBody}">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Broj" Binding="{Binding BrojDresa}" Width="*"  Foreground="{DynamicResource MaterialDesignBody}" />
-                    <DataGridTextColumn Header="Ime" Binding="{Binding Ime}" Width="2*" Foreground="{DynamicResource MaterialDesignBody}" />
-                    <DataGridTextColumn Header="Prezime" Binding="{Binding Prezime}" Width="2*" Foreground="{DynamicResource MaterialDesignBody}" />
+                    <DataGridTextColumn Header="{DynamicResource Number}" Binding="{Binding BrojDresa}" Width="*"  Foreground="{DynamicResource MaterialDesignBody}" />
+                    <DataGridTextColumn Header="{DynamicResource Name}" Binding="{Binding Ime}" Width="2*" Foreground="{DynamicResource MaterialDesignBody}" />
+                    <DataGridTextColumn Header="{DynamicResource Surname}" Binding="{Binding Prezime}" Width="3*" Foreground="{DynamicResource MaterialDesignBody}" />
                     <DataGridTemplateColumn Width="2*">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button x:Name="GostiUbacivanje" Content="Ubaci" 
+                                <Button x:Name="GostiUbacivanje" Content="{DynamicResource Enter}" 
                                         Padding="0" MaxHeight="25" MaxWidth="70"
                                         BorderBrush="#388E3C" Background="#388E3C"
                                         Command="{Binding DataContext.UbaciGostiCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
@@ -267,7 +267,7 @@
                   FontSize="{Binding Source={x:Static properties:Settings.Default}, Path=FontSize}"
                   HorizontalAlignment="Center"
                   Foreground="{DynamicResource MaterialDesignBody}"
-                  Content="Autogol" IsChecked="{Binding Autogoal}" 
+                  Content="{DynamicResource Autogol}" IsChecked="{Binding Autogoal}" 
                   Margin="0,5"/>
         <ComboBox
             Grid.Row="3" Grid.Column="2"
@@ -275,7 +275,7 @@
             DisplayMemberPath="BrojDresa"
             FontSize="{Binding Source={x:Static properties:Settings.Default}, Path=FontSize}"
             SelectedValue="{Binding SelectedSub}"
-            materialDesign:HintAssist.Hint="Izaberite igraca"                              
+            materialDesign:HintAssist.Hint="{DynamicResource SelectPlayer}"                              
             IsEditable="True"
             Width="150"
             Margin="0,5,0,5"
@@ -284,26 +284,26 @@
                 Command="{Binding GolCommand}"
                 Width="150"
                 FontSize="{Binding Source={x:Static properties:Settings.Default}, Path=FontSize}"
-                Content="Gol"
+                Content="{DynamicResource Goal}"
                 IsEnabled="{Binding IsNotGamePhase}"/>
         <Button Grid.Row="4" Grid.Column="2"
             Command="{Binding IzmjenaCommand}"
             Width="150"
             FontSize="{Binding Source={x:Static properties:Settings.Default}, Path=FontSize}"
-            Content="Izmjena"
+            Content="{DynamicResource Substitution}"
             IsEnabled="{Binding IsNotGamePhase}"/>
 
         <Button Grid.Row="4" Grid.Column="4"
             Command="{Binding YellowCardCommand}"
             Width="150"
             FontSize="{Binding Source={x:Static properties:Settings.Default}, Path=FontSize}"
-            Content="Zuti karton"
+            Content="{DynamicResource YellowCard}"
             IsEnabled="{Binding IsNotGamePhase}"/>
 
         <Button Grid.Row="4" Grid.Column="5"
             Command="{Binding RedCardCommand}"
             Width="150"
-            Content="Crveni karton"
+            Content="{DynamicResource RedCard}"
             FontSize="{Binding Source={x:Static properties:Settings.Default}, Path=FontSize}"
             IsEnabled="{Binding IsNotGamePhase}"/>
 
@@ -321,6 +321,6 @@
                 Width="100"
                 FontSize="{Binding Source={x:Static properties:Settings.Default}, Path=FontSize}"
                 IsEnabled="{Binding SecondHalf}"
-                Content="2. period"/>
+                Content="{DynamicResource SndPeriod}"/>
     </Grid>
 </Window>
