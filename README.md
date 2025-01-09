@@ -67,15 +67,15 @@ Kao što je vidljivo na slikama, meni se sastoji od sljedećih polja:
 Jedan od osnovnih načina upotrebe aplikacije je upravljanje tabelama. Korisnik ima mogućnost pregleda, dodavanja, izmjene i brisanja zapisa u tabelama. Sam prozor je napravljen da bude jednostavan za sve korisnike. Polja koja su obavezna prilikom unosa su naznačena.
 
 Tabele čijim je sadržajem u potpunosti moguće upravljati:
-    - Igrač
-    - Klub
-    - Stadion
-    - Pozicija
-    - Utakmica
+- Igrač
+- Klub
+- Stadion
+- Pozicija
+- Utakmica
 
 Tabele čijim je sadržajem moguće djelimično upravljati:
-    - Tip kartona
-    - Korisnik
+- Tip kartona
+- Korisnik
 
 Stadioni:
 ![image](https://github.com/user-attachments/assets/c84d4d99-5963-423d-9725-7bb0468038b7)
