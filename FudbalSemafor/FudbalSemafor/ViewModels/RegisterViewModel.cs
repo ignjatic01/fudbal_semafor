@@ -53,7 +53,9 @@ namespace FudbalSemafor.ViewModels
                     NewKorisnik = new Korisnik();
                     OnPropertyChanged(nameof(NewKorisnik));
 
-                    var result = MessageBox.Show("Uspjesna registracija!", "Obaveštenje", MessageBoxButton.OK, MessageBoxImage.Information);
+                    string message = (string)Application.Current.Resources["SuccessfulRegistration"];
+                    string title = (string)Application.Current.Resources["NotificationTitle"];
+                    var result = MessageBox.Show(message, title, MessageBoxButton.OK, MessageBoxImage.Information);
                 }
             }
         }

@@ -53,7 +53,7 @@ namespace FudbalSemafor.ViewModels
 
         public void AddStadion()
         {
-            if (!string.IsNullOrWhiteSpace(NewStadion.Naziv) && !string.IsNullOrWhiteSpace(NewStadion.Grad) && NewStadion.Kapacitet >= 0)
+            if (!string.IsNullOrWhiteSpace(NewStadion.Naziv) && !string.IsNullOrWhiteSpace(NewStadion.Grad) && NewStadion.Kapacitet >= 0 && !string.IsNullOrWhiteSpace(NewStadion.Podloga))
             {
                 try
                 {
@@ -74,7 +74,7 @@ namespace FudbalSemafor.ViewModels
         
         public void EditStadion()
         {
-            if (!string.IsNullOrWhiteSpace(SelectedStadion.Naziv) && !string.IsNullOrWhiteSpace(SelectedStadion.Grad) && SelectedStadion.Kapacitet >= 0)
+            if (!string.IsNullOrWhiteSpace(SelectedStadion.Naziv) && !string.IsNullOrWhiteSpace(SelectedStadion.Grad) && SelectedStadion.Kapacitet >= 0 && !string.IsNullOrWhiteSpace(SelectedStadion.Podloga))
             {
                 try
                 {
@@ -96,7 +96,7 @@ namespace FudbalSemafor.ViewModels
                     }
                     else
                     {
-                        MessageBox.Show("Stadion nije pronađen.");
+                        //MessageBox.Show("Stadion nije pronađen.");
                     }
                 }
                 catch (Exception ex)
@@ -123,7 +123,7 @@ namespace FudbalSemafor.ViewModels
                     }
                     else
                     {
-                        MessageBox.Show("Stadion nije pronađen.");
+                        //MessageBox.Show("Stadion nije pronađen.");
                     }
                 }
                 catch (Exception ex)

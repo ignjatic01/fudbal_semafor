@@ -141,7 +141,7 @@ namespace FudbalSemafor.ViewModels
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Greska prilikom dodavanja igraca.");
+                    Console.WriteLine(ex.ToString());
                 }
             }
         }
@@ -175,7 +175,7 @@ namespace FudbalSemafor.ViewModels
                     }
                     else
                     {
-                        MessageBox.Show("Igrac nije pronađen.");
+                        
                     }
                 }
                 catch (Exception ex)
@@ -201,7 +201,7 @@ namespace FudbalSemafor.ViewModels
                     }
                     else
                     {
-                        MessageBox.Show("Igrac nije pronađen.");
+                        
                     }
                 }
                 catch (Exception ex)

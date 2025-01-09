@@ -94,7 +94,7 @@ namespace FudbalSemafor.ViewModels
                     }
                     else
                     {
-                        MessageBox.Show("Pozicija nije pronadjena.");
+                        //MessageBox.Show("Pozicija nije pronadjena.");
                     }
                 }
                 catch (Exception ex)
@@ -120,7 +120,7 @@ namespace FudbalSemafor.ViewModels
                     }
                     else
                     {
-                        MessageBox.Show("Pozicija nije pronadjena.");
+                        //MessageBox.Show("Pozicija nije pronadjena.");
                     }
                 }
                 catch (Exception ex)

@@ -93,7 +93,7 @@ namespace FudbalSemafor.ViewModels
                     }
                     else
                     {
-                        MessageBox.Show("Tip kartona nije pronadjen.");
+                        //MessageBox.Show("Tip kartona nije pronadjen.");
                     }
                 }
                 catch (Exception ex)
@@ -119,7 +119,7 @@ namespace FudbalSemafor.ViewModels
                     }
                     else
                     {
-                        MessageBox.Show("Tip kartona nije pronadjen.");
+                        //MessageBox.Show("Tip kartona nije pronadjen.");
                     }
                 }
                 catch (Exception ex)

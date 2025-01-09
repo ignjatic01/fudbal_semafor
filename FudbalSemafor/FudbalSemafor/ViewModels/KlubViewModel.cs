@@ -71,7 +71,6 @@ namespace FudbalSemafor.ViewModels
         {
             context = new SemaforDbContext();
             var klubs = context.Klubs.ToList();
-            //var klubs = context.Klubs.Where(k => k.Grad == "Banja Luka").ToList();
             Klubs = new ObservableCollection<Klub>();
             foreach ( var klub in klubs )
             {
@@ -86,7 +85,7 @@ namespace FudbalSemafor.ViewModels
 
         public void AddKlub()
         {
-            if (!string.IsNullOrWhiteSpace(NewKlub.NazivKluba) && !string.IsNullOrWhiteSpace(NewKlub.Grad))
+            if (!string.IsNullOrWhiteSpace(NewKlub.NazivKluba) && !string.IsNullOrWhiteSpace(NewKlub.Grad) && !string.IsNullOrEmpty(_trenutnaPutanjaSlike))
             {
                 try
                 {
@@ -105,6 +104,7 @@ namespace FudbalSemafor.ViewModels
                 }
                 catch (Exception ex)
                 {
+                    Console.WriteLine(ex.ToString());
                 }
             }
         }
@@ -132,7 +132,7 @@ namespace FudbalSemafor.ViewModels
                     }
                     else
                     {
-                        MessageBox.Show("Klub nije pronađen.");
+                        //MessageBox.Show("Klub nije pronađen.");
                     }
                 }
                 catch (Exception ex)
@@ -158,7 +158,7 @@ namespace FudbalSemafor.ViewModels
                     }
                     else
                     {
-                        MessageBox.Show("Klub nije pronađen.");
+                        //MessageBox.Show("Klub nije pronađen.");
                     }
                 }
                 catch (Exception ex)
@@ -173,7 +173,7 @@ namespace FudbalSemafor.ViewModels
             OpenFileDialog openFileDialog = new OpenFileDialog
             {
                 Filter = "Image files (*.jpg, *.jpeg, *.png, *.bmp)|*.jpg;*.jpeg;*.png;*.bmp",
-                Title = "Izaberite sliku"
+                Title = "Choose"
             };
 
             if (openFileDialog.ShowDialog() == true)
@@ -181,11 +181,11 @@ namespace FudbalSemafor.ViewModels
                 string originalPath = openFileDialog.FileName;
                 string fileName = System.IO.Path.GetFileName(originalPath);
 
-                // Dobijanje putanje projekta (2 nivoa iznad bin foldera)
+                // Dobijanje putanje projekta
                 string projectDirectory = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\..\\..\\");
                 string imagesDirectory = System.IO.Path.Combine(projectDirectory, "Images");
 
-                // Kreirajte folder ako ne postoji
+                // Kreiranje folder ako ne postoji
                 if (!Directory.Exists(imagesDirectory))
                 {
                     Directory.CreateDirectory(imagesDirectory);
@@ -194,11 +194,11 @@ namespace FudbalSemafor.ViewModels
                 // Nova putanja za sliku
                 string newImagePath = System.IO.Path.Combine(imagesDirectory, fileName);
 
-                // Kopirajte sliku u projektni folder
+                // Kopiranje slike u projektni folder
                 File.Copy(originalPath, newImagePath, overwrite: true);
 
-                // Postavite novu putanju u ViewModel
-                _trenutnaPutanjaSlike = System.IO.Path.Combine("Images", fileName); // Relativna putanja
+                // Postavlanje nove putanje u ViewModel
+                _trenutnaPutanjaSlike = System.IO.Path.Combine("Images", fileName);
                 NazivSlike = fileName;
 
                 // Prikaz slike

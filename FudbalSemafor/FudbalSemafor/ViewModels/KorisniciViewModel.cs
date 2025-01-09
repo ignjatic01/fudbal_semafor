@@ -68,7 +68,7 @@ namespace FudbalSemafor.ViewModels
                     }
                     else
                     {
-                        MessageBox.Show("Igrac nije pronađen.");
+                        //MessageBox.Show("Igrac nije pronađen.");
                     }
                 }
                 catch (Exception ex)
@@ -94,7 +94,7 @@ namespace FudbalSemafor.ViewModels
                     }
                     else
                     {
-                        MessageBox.Show("Igrac nije pronađen.");
+                        //MessageBox.Show("Igrac nije pronađen.");
                     }
                 }
                 catch (Exception ex)

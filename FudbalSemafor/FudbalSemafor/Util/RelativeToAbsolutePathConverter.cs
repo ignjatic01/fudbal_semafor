@@ -17,17 +17,15 @@ namespace FudbalSemafor.Util
 
             string relativePath = value.ToString();
 
-            // Dobijanje apsolutne putanje u root folderu projekta
             string projectDirectory = Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory).Parent.Parent.Parent.FullName;
             string absolutePath = Path.Combine(projectDirectory, relativePath);
 
-            // Proverite da li fajl postoji na toj putanji
             if (File.Exists(absolutePath))
             {
                 return absolutePath;
             }
 
-            return null; // Ako fajl ne postoji, vraćamo null
+            return null;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

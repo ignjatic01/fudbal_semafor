@@ -175,7 +175,7 @@ namespace FudbalSemafor.ViewModels
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Greska prilikom dodavanja utakmice.");
+                    Console.WriteLine(ex.ToString());
                 }
             }
         }
@@ -207,7 +207,7 @@ namespace FudbalSemafor.ViewModels
                     }
                     else
                     {
-                        MessageBox.Show("Utakmica nije pronađena.");
+                        //MessageBox.Show("Utakmica nije pronađena.");
                     }
                 }
                 catch (Exception ex)
@@ -232,7 +232,7 @@ namespace FudbalSemafor.ViewModels
                     }
                     else
                     {
-                        MessageBox.Show("Utakmica nije pronađena.");
+                        //MessageBox.Show("Utakmica nije pronađena.");
                     }
                 }
                 catch (Exception ex)

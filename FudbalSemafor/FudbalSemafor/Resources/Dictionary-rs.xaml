@@ -100,4 +100,11 @@
     <System:String x:Key="Stadiums">Stadioni</System:String>
     <System:String x:Key="Players">Igrači</System:String>
     <System:String x:Key="Clubs">Klubovi</System:String>
+
+    <System:String x:Key="FieldCannotBeEmpty">Polje ne smije biti prazno.</System:String>
+    <System:String x:Key="InvalidInputFormat">Nedozvoljeni karakteri u unosu.</System:String>
+    <System:String x:Key="InvalidPasswordMessage">Lozinka nije ispravna!</System:String>
+    <System:String x:Key="NotificationTitle">Obaveštenje</System:String>
+    <System:String x:Key="IncorrectUsername">Korisničko ime ne postoji!</System:String>
+    <System:String x:Key="SuccessfulRegistration">Uspješna registracija!</System:String>
 </ResourceDictionary>

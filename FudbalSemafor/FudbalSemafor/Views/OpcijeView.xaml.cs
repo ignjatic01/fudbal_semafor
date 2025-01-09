@@ -49,7 +49,7 @@ namespace FudbalSemafor.Views
         private void ChangeThemeMid(object sender, RoutedEventArgs e)
         {
             SetPrimaryColor((Color)ColorConverter.ConvertFromString("#FF5722"), BaseTheme.Inherit);
-            SaveTheme("Inherit", (Color)ColorConverter.ConvertFromString("#FF5722"));
+            SaveTheme("Dark", (Color)ColorConverter.ConvertFromString("#FF5722"));
         }
 
         private void ChangeFontSmall(object sender, RoutedEventArgs e)

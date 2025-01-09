@@ -59,14 +59,19 @@ namespace FudbalSemafor.ViewModels
                             window.Close();
                         }
                     }
-                    else 
+                    else
                     {
-                        var result = MessageBox.Show("Lozinka nije ispravna!", "Obaveštenje", MessageBoxButton.OK, MessageBoxImage.Information);
+                        string message = (string)Application.Current.Resources["InvalidPasswordMessage"];
+                        string title = (string)Application.Current.Resources["NotificationTitle"];
+
+                        var result = MessageBox.Show(message, title, MessageBoxButton.OK, MessageBoxImage.Information);
                     }
                 }
                 if (!isUsernameExsists)
                 {
-                    var result = MessageBox.Show("Korisnicko ime nije ispravno!", "Obaveštenje", MessageBoxButton.OK, MessageBoxImage.Information);
+                    string message = (string)Application.Current.Resources["IncorrectUsername"];
+                    string title = (string)Application.Current.Resources["NotificationTitle"];
+                    var result = MessageBox.Show(message, title, MessageBoxButton.OK, MessageBoxImage.Information);
                 }
             }
         }

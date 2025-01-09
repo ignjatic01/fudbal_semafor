@@ -99,6 +99,11 @@
     <System:String x:Key="SelectStadium">Select stadium</System:String>
     <System:String x:Key="Open">Open</System:String>
     <System:String x:Key="Statistic">Statistic</System:String>
-    
-    
+
+    <System:String x:Key="FieldCannotBeEmpty">Field cannot be empty.</System:String>
+    <System:String x:Key="InvalidInputFormat">Invalid input format.</System:String>
+    <System:String x:Key="InvalidPasswordMessage">Incorrect password!</System:String>
+    <System:String x:Key="NotificationTitle">Notification</System:String>
+    <System:String x:Key="IncorrectUsername">The username is incorrect!</System:String>
+    <System:String x:Key="SuccessfulRegistration">Registration successful!</System:String>
 </ResourceDictionary>

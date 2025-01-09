@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace FudbalSemafor.Util
@@ -17,7 +18,8 @@ namespace FudbalSemafor.Util
         {
             if (value == null || string.IsNullOrWhiteSpace(value.ToString()))
             {
-                return new ValidationResult(false, "Field cannot be empty.");
+                string emptyFieldMessage = (string)Application.Current.Resources["FieldCannotBeEmpty"];
+                return new ValidationResult(false, emptyFieldMessage);
             }
 
             string input = value.ToString();
@@ -25,7 +27,8 @@ namespace FudbalSemafor.Util
 
             if (!regex.IsMatch(input))
             {
-                return new ValidationResult(false, "Invalid input format.");
+                string invalidInputMessage = (string)Application.Current.Resources["InvalidInputFormat"];
+                return new ValidationResult(false, invalidInputMessage);
             }
 
             return ValidationResult.ValidResult;
