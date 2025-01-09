@@ -49,16 +49,18 @@ Dobrodošli u korisničko uputstvo za aplikaciju **Semafor za fudbalske utakmice
 ![image](https://github.com/user-attachments/assets/58515481-428e-484e-a902-8307ff8045bb)
 
 Kao što je vidljivo na slikama, meni se sastoji od sljedećih polja:
-    - Igrači (Prikaz svih igrača i osnovne operacije nad njima)
-    - Klubovi (Prikaz svih klubova i osnovne operacije nad njima)
-    - Stadioni (Prikaz svih stadiona i osnovne operacije nad njima)
-    - Utakmice (Prikaz svih utakmica i osnovne operacije nad njima, kao i otvaranje izabrane utakmice)
-    - Šifarnici
-        - Tip kartona (Prikaz svih tipova kartona i dodavanje)
-        - Pozicija (Prikaz svih fudbalskih pozicija i osnovne operacije nad njima)
-    - Korisnici (Prikaz svih korisnika i osnovne operacije nad njima (bez mogućnosti dodavanja) )
-    - Statistika (Pregled statistike igrača i klubova)
-    - Opcije (Osnovne vizuelne i jezičke opcije aplikacije)
+
+- Igrači (Prikaz svih igrača i osnovne operacije nad njima)
+- Klubovi (Prikaz svih klubova i osnovne operacije nad njima)
+- Stadioni (Prikaz svih stadiona i osnovne operacije nad njima)
+- Utakmice (Prikaz svih utakmica i osnovne operacije nad njima, kao i otvaranje izabrane utakmice)
+- Šifarnici
+  - Tip kartona (Prikaz svih tipova kartona i dodavanje)
+  - Pozicija (Prikaz svih fudbalskih pozicija i osnovne operacije nad njima)
+- Korisnici (Prikaz svih korisnika i osnovne operacije nad njima (bez mogućnosti dodavanja))
+- Statistika (Pregled statistike igrača i klubova)
+- Opcije (Osnovne vizuelne i jezičke opcije aplikacije)
+
 
 ### Upravljanje tabelama
 
