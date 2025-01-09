@@ -1,13 +1,21 @@
 <div style="text-align: center;">
 
-# Univerzitet u Banjoj Luci
+## Univerzitet u Banjoj Luci
 ## Elektrotehnički fakultet
 
----
+
+
+
 
 # Semafor za fudbalske utakmice
 
-## Korisničko uputstvo
+
+
+
+
+
+
+### Korisničko uputstvo
 
 </div>
 
@@ -16,42 +24,45 @@
 ## Sadržaj
 
 1. [Uvod](#uvod)
-2. [Instalacija](#instalacija)
-3. [Pokretanje aplikacije](#pokretanje-aplikacije)
-4. [Korišćenje aplikacije](#korisćenje-aplikacije)
-    - [Dodavanje timova](#dodavanje-timova)
+2. [Korišćenje aplikacije](#korisćenje-aplikacije)
+    - [Pregled menija](#pregled-menija)
+    - [Upravljanje tabelama](#upravljanje-tabelama)
     - [Praćenje utakmice](#praćenje-utakmice)
-5. [Podešavanja](#podešavanja)
-6. [Česta pitanja](#česta-pitanja)
-7. [Kontakt](#kontakt)
+4. [Podešavanja](#podešavanja)
+5. [Česta pitanja](#česta-pitanja)
+6. [Kontakt](#kontakt)
 
 ---
 
 ## Uvod
 
-Dobrodošli u korisničko uputstvo za aplikaciju **Semafor za fudbalske utakmice**. Ova aplikacija je razvijena kao deo projekta na Elektrotehničkom fakultetu Univerziteta u Banjoj Luci.
-
----
-
-## Instalacija
-
-Za instalaciju aplikacije, pratite sledeće korake:
-
-1. Preuzmite aplikaciju sa [GitHub repozitorijuma](https://github.com/vaš-repozitorijum).
-2. Ekstraktujte preuzeti fajl na željenu lokaciju.
-3. Pokrenite `setup.exe` za instalaciju aplikacije.
-
----
-
-## Pokretanje aplikacije
-
-Nakon uspešne instalacije, aplikaciju možete pokrenuti dvostrukim klikom na ikonicu **Semafor** na radnoj površini ili iz Start menija.
+Dobrodošli u korisničko uputstvo za aplikaciju **Semafor za fudbalske utakmice**. Ova aplikacija je razvijena kao dio projekta na Elektrotehničkom fakultetu Univerziteta u Banjoj Luci. Osnovna namjena aplikacije je omogućavanje prikaza značajnih događaja na fudbalskoj utakmici. Pored elemenata prikaza, postoji i aplikativni prikaz statistike i informacija o već odigranim utakmicama.
 
 ---
 
 ## Korišćenje aplikacije
 
-### Dodavanje timova
+### Pregled menija
+
+![image](https://github.com/user-attachments/assets/e9941f4a-7bdf-484e-899f-43910d166946)
+
+![image](https://github.com/user-attachments/assets/58515481-428e-484e-a902-8307ff8045bb)
+
+Kao što je vidljivo na slikama, meni se sastoji od sljedećih polja:
+    - Igrači (Prikaz svih igrača i osnovne operacije nad njima)
+    - Klubovi (Prikaz svih klubova i osnovne operacije nad njima)
+    - Stadioni (Prikaz svih stadiona i osnovne operacije nad njima)
+    - Utakmice (Prikaz svih utakmica i osnovne operacije nad njima, kao i otvaranje izabrane utakmice)
+    - Šifarnici
+        - Tip kartona (Prikaz svih tipova kartona i dodavanje)
+        - Pozicija (Prikaz svih fudbalskih pozicija i osnovne operacije nad njima)
+    - Korisnici (Prikaz svih korisnika i osnovne operacije nad njima (bez mogućnosti dodavanja) )
+    - Statistika (Pregled statistike igrača i klubova)
+    - Opcije (Osnovne vizuelne i jezičke opcije aplikacije)
+
+### Upravljanje tabelama
+
+Jedan od osnovnih načina upotrebe aplikacije je upravljanje tabelama. Korisnik ima mogućnost pregleda, dodavanja, izmjene i brisanja zapisa u tabelama. Sam prozor je napravljen da bude jednostavan za sve korisnike. Polja koja su obavezna prilikom unosa su naznačena.
 
 1. Otvorite aplikaciju i kliknite na dugme **Dodaj tim**.
 2. Unesite ime tima, logo i ostale potrebne informacije.
