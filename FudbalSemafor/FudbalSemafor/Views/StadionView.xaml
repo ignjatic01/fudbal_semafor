@@ -57,7 +57,7 @@
                                 <Binding Path="NewStadion.Naziv" UpdateSourceTrigger="PropertyChanged">
                                     <Binding.ValidationRules>
                                         <local2:RegexValidationRule 
-                                            Pattern="^[a-zA-Z]+$" 
+                                            Pattern="^[a-zA-Z\s]+$" 
                                             ValidatesOnTargetUpdated="True" />
                                     </Binding.ValidationRules>
                                 </Binding>
@@ -73,7 +73,7 @@
                                 <Binding Path="NewStadion.Grad" UpdateSourceTrigger="PropertyChanged">
                                     <Binding.ValidationRules>
                                         <local2:RegexValidationRule 
-                                            Pattern="^[a-zA-Z]+$" 
+                                            Pattern="^[a-zA-Z\s]+$" 
                                             ValidatesOnTargetUpdated="True" />
                                     </Binding.ValidationRules>
                                 </Binding>
@@ -105,7 +105,7 @@
                                 <Binding Path="NewStadion.Podloga" UpdateSourceTrigger="PropertyChanged">
                                     <Binding.ValidationRules>
                                         <local2:RegexValidationRule 
-                                            Pattern="^[a-zA-Z]+$" 
+                                            Pattern="^[a-zA-Z\s]+$" 
                                             ValidatesOnTargetUpdated="True" />
                                     </Binding.ValidationRules>
                                 </Binding>

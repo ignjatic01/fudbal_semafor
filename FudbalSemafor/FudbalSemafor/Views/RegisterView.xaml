@@ -27,7 +27,7 @@
             <TextBox.Text>
                 <Binding Path="NewKorisnik.Ime" UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>
-                        <local2:RegexValidationRule Pattern="^[a-zA-Z0-9]+$" ValidatesOnTargetUpdated="True" />
+                        <local2:RegexValidationRule Pattern="^[a-zA-Z0-9\s]+$" ValidatesOnTargetUpdated="True" />
                     </Binding.ValidationRules>
                 </Binding>
             </TextBox.Text>
@@ -40,7 +40,7 @@
             <TextBox.Text>
                 <Binding Path="NewKorisnik.Prezime" UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>
-                        <local2:RegexValidationRule Pattern="^[a-zA-Z0-9]+$" ValidatesOnTargetUpdated="True" />
+                        <local2:RegexValidationRule Pattern="^[a-zA-Z0-9\s]+$" ValidatesOnTargetUpdated="True" />
                     </Binding.ValidationRules>
                 </Binding>
             </TextBox.Text>

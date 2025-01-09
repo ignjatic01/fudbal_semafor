@@ -54,8 +54,24 @@
                                   IsEditable="True"
                                   Width="300"
                                   Margin="0,5,0,5"
-                                  Foreground="{DynamicResource MaterialDesignBody}" />
-
+                                  Foreground="{DynamicResource MaterialDesignBody}">
+                        <ComboBox.Style>
+                            <Style TargetType="ComboBox" BasedOn="{StaticResource {x:Type ComboBox}}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding SelectedDomaci}" Value="{x:Null}">
+                                        <Setter Property="BorderBrush" Value="#D32F2F" />
+                                        <Setter Property="BorderThickness" Value="2" />
+                                        <Setter Property="ToolTip" Value="Selection cannot be empty." />
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding SelectedDomaci}" Value="">
+                                        <Setter Property="BorderBrush" Value="#D32F2F" />
+                                        <Setter Property="BorderThickness" Value="2" />
+                                        <Setter Property="ToolTip" Value="Selection cannot be empty." />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </ComboBox.Style>
+                    </ComboBox>
                     <ComboBox ItemsSource="{Binding Klubs}"
                                   DisplayMemberPath="NazivKluba"
                                   SelectedValue="{Binding SelectedGosti}"
@@ -63,7 +79,25 @@
                                   IsEditable="True"
                                   Width="300"
                                   Margin="0,5,0,5"
-                                  Foreground="{DynamicResource MaterialDesignBody}" />
+                                  Foreground="{DynamicResource MaterialDesignBody}">
+                        <ComboBox.Style>
+                            <Style TargetType="ComboBox" BasedOn="{StaticResource {x:Type ComboBox}}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding SelectedGosti}" Value="{x:Null}">
+                                        <Setter Property="BorderBrush" Value="#D32F2F" />
+                                        <Setter Property="BorderThickness" Value="2" />
+                                        <Setter Property="ToolTip" Value="Selection cannot be empty." />
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding SelectedGosti}" Value="">
+                                        <Setter Property="BorderBrush" Value="#D32F2F" />
+                                        <Setter Property="BorderThickness" Value="2" />
+                                        <Setter Property="ToolTip" Value="Selection cannot be empty." />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </ComboBox.Style>
+
+                    </ComboBox>
 
                     <ComboBox ItemsSource="{Binding Stadions}"
                                   DisplayMemberPath="Naziv"

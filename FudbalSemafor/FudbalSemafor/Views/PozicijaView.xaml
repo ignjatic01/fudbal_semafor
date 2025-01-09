@@ -70,7 +70,7 @@
                             <TextBox.Text>
                                 <Binding Path="NewPozicija.NazivPozicije" UpdateSourceTrigger="PropertyChanged">
                                     <Binding.ValidationRules>
-                                        <local2:RegexValidationRule Pattern="^[a-zA-Z]+$" ValidatesOnTargetUpdated="True" />
+                                        <local2:RegexValidationRule Pattern="^[a-zA-Z\s]+$" ValidatesOnTargetUpdated="True" />
                                     </Binding.ValidationRules>
                                 </Binding>
                             </TextBox.Text>

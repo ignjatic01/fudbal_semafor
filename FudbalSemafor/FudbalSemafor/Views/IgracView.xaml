@@ -57,7 +57,7 @@
                             <TextBox.Text>
                                 <Binding Path="NewIgrac.Ime" UpdateSourceTrigger="PropertyChanged">
                                     <Binding.ValidationRules>
-                                        <local2:RegexValidationRule Pattern="^[a-zA-Z]+$" ValidatesOnTargetUpdated="True" />
+                                        <local2:RegexValidationRule Pattern="^[a-zA-Z\s]+$" ValidatesOnTargetUpdated="True" />
                                     </Binding.ValidationRules>
                                 </Binding>
                             </TextBox.Text>
@@ -71,7 +71,7 @@
                             <TextBox.Text>
                                 <Binding Path="NewIgrac.Prezime" UpdateSourceTrigger="PropertyChanged">
                                     <Binding.ValidationRules>
-                                        <local2:RegexValidationRule Pattern="^[a-zA-Z]+$" ValidatesOnTargetUpdated="True" />
+                                        <local2:RegexValidationRule Pattern="^[a-zA-Z\s]+$" ValidatesOnTargetUpdated="True" />
                                     </Binding.ValidationRules>
                                 </Binding>
                             </TextBox.Text>
@@ -99,7 +99,25 @@
                             IsEditable="True"
                             Width="200"
                             Margin="0,5,0,5"
-                            Foreground="{DynamicResource MaterialDesignBody}" />
+                            Foreground="{DynamicResource MaterialDesignBody}">
+
+                            <ComboBox.Style>
+                                <Style TargetType="ComboBox" BasedOn="{StaticResource {x:Type ComboBox}}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding SelectedKlub}" Value="{x:Null}">
+                                            <Setter Property="BorderBrush" Value="#D32F2F" />
+                                            <Setter Property="BorderThickness" Value="2" />
+                                            <Setter Property="ToolTip" Value="Selection cannot be empty." />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding SelectedKlub}" Value="">
+                                            <Setter Property="BorderBrush" Value="#D32F2F" />
+                                            <Setter Property="BorderThickness" Value="2" />
+                                            <Setter Property="ToolTip" Value="Selection cannot be empty." />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </ComboBox.Style>
+                        </ComboBox>
 
                         <ComboBox
                             ItemsSource="{Binding Pozicijas}"
@@ -109,7 +127,25 @@
                             IsEditable="True"
                             Width="200"
                             Margin="0,5,0,5"
-                            Foreground="{DynamicResource MaterialDesignBody}" />
+                            Foreground="{DynamicResource MaterialDesignBody}">
+
+                            <ComboBox.Style>
+                                <Style TargetType="ComboBox" BasedOn="{StaticResource {x:Type ComboBox}}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding SelectedPozicija}" Value="{x:Null}">
+                                            <Setter Property="BorderBrush" Value="#D32F2F" />
+                                            <Setter Property="BorderThickness" Value="2" />
+                                            <Setter Property="ToolTip" Value="Selection cannot be empty." />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding SelectedPozicija}" Value="">
+                                            <Setter Property="BorderBrush" Value="#D32F2F" />
+                                            <Setter Property="BorderThickness" Value="2" />
+                                            <Setter Property="ToolTip" Value="Selection cannot be empty." />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </ComboBox.Style>
+                        </ComboBox>
                         <Button Content="{DynamicResource AddPlayer}" Width="150" Height="40"
                                 Margin="0,5,0,5" Command="{Binding AddIgracCommand}" 
                                 FontSize="{Binding Source={x:Static properties:Settings.Default}, Path=FontSize}"/>

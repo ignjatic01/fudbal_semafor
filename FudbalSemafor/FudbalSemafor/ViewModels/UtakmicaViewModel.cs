@@ -149,7 +149,7 @@ namespace FudbalSemafor.ViewModels
 
         public void AddUtakmica()
         {
-            if (SelectedDomaci.IdKlub != 0 && SelectedGosti.IdKlub != 0 && SelectedStadion != null)
+            if (SelectedDomaci.IdKlub != 0 && SelectedGosti.IdKlub != 0)
             {
                 try
                 {
