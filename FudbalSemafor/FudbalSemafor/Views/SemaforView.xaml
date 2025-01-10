@@ -231,9 +231,9 @@
         </StackPanel>
 
         <ScrollViewer Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="3" Grid.RowSpan="2"
-      Margin="10"
-      HorizontalScrollBarVisibility="Auto" 
-      VerticalScrollBarVisibility="Auto">
+              Margin="10"
+              HorizontalScrollBarVisibility="Auto" 
+              VerticalScrollBarVisibility="Auto">
             <ItemsControl ItemsSource="{Binding Dogadjajs}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
@@ -242,19 +242,37 @@
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <TextBlock Foreground="{DynamicResource MaterialDesignBody}" 
-                   FontSize="20"
-                   Text="{Binding Tekst}" />
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Foreground="{DynamicResource MaterialDesignBody}" 
+                               FontSize="20"
+                               Text="{Binding Tekst}" 
+                               VerticalAlignment="Center" />
+                            <Button Command="{Binding DataContext.ObrisiDogadjajCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}" 
+                                CommandParameter="{Binding}"
+                                BorderBrush="Transparent"
+                                Background="Transparent"
+                                ToolTip="Obriši"
+                                Padding="5"
+                                Width="40"
+                                Height="40">
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                    <materialDesign:PackIcon Kind="Close" Foreground="#FF0000" Width="24" Height="24" />
+                                </StackPanel>
+                            </Button>
+
+
+                        </StackPanel>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
                 <ItemsControl.ItemContainerStyle>
                     <Style TargetType="ContentPresenter">
                         <Setter Property="HorizontalAlignment" 
-                Value="{Binding Alignment}" />
+                        Value="{Binding Alignment}" />
                     </Style>
                 </ItemsControl.ItemContainerStyle>
             </ItemsControl>
         </ScrollViewer>
+
 
 
 

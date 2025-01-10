@@ -24,6 +24,20 @@ namespace FudbalSemafor.Models
             }
         }
 
+        private int _id;
+        public int Id
+        {
+            get => _id;
+            set
+            {
+                if (_id != value)
+                {
+                    _id = value;
+                    OnPropertyChanged(nameof(Id));
+                }
+            }
+        }
+
         private int _minut;
         public int Minut
         {
@@ -40,11 +54,12 @@ namespace FudbalSemafor.Models
 
         public HorizontalAlignment Alignment { get; set; }
 
-        public Dogadjaj(string tekst, HorizontalAlignment alignment, int minut)
+        public Dogadjaj(string tekst, HorizontalAlignment alignment, int minut, int id)
         {
             Tekst = tekst;
             Alignment = alignment;
             Minut = minut;
+            Id = id;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
