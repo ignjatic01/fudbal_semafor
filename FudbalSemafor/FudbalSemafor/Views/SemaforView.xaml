@@ -87,7 +87,7 @@
                 SelectedItem="{Binding SelectedDomaciStarter, Mode=TwoWay}"
                 ItemsSource="{Binding DomaciStarters}" 
                 CanUserAddRows="False" 
-                MaxHeight="300"
+                MaxHeight="210"
                 FontSize="{Binding Source={x:Static properties:Settings.Default}, Path=FontSize}"
                 HorizontalScrollBarVisibility="Auto" 
                 VerticalScrollBarVisibility="Auto"
@@ -97,7 +97,7 @@
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="{DynamicResource Number}" Binding="{Binding BrojDresa}" Width="*" Foreground="{DynamicResource MaterialDesignBody}" />
                     <DataGridTextColumn Header="{DynamicResource Name}" Binding="{Binding Ime}" Width="2*" Foreground="{DynamicResource MaterialDesignBody}" />
-                    <DataGridTextColumn Header="{DynamicResource Surname}" Binding="{Binding Prezime}" Width="3*" Foreground="{DynamicResource MaterialDesignBody}" />
+                    <DataGridTextColumn Header="{DynamicResource Surname}" Binding="{Binding Prezime}" Width="2*" Foreground="{DynamicResource MaterialDesignBody}" />
                     <DataGridTemplateColumn Width="2*">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
@@ -136,7 +136,7 @@
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="{DynamicResource Number}" Binding="{Binding BrojDresa}" Width="*"  Foreground="{DynamicResource MaterialDesignBody}" />
                     <DataGridTextColumn Header="{DynamicResource Name}" Binding="{Binding Ime}" Width="2*" Foreground="{DynamicResource MaterialDesignBody}" />
-                    <DataGridTextColumn Header="{DynamicResource Surname}" Binding="{Binding Prezime}" Width="3*" Foreground="{DynamicResource MaterialDesignBody}" />
+                    <DataGridTextColumn Header="{DynamicResource Surname}" Binding="{Binding Prezime}" Width="2*" Foreground="{DynamicResource MaterialDesignBody}" />
                     <DataGridTemplateColumn Width="2*">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
@@ -164,7 +164,7 @@
                 SelectedItem="{Binding SelectedGostiStarter, Mode=TwoWay}"
                 ItemsSource="{Binding GostiStarters}" 
                 CanUserAddRows="False" 
-                MaxHeight="300"
+                MaxHeight="210"
                 FontSize="{Binding Source={x:Static properties:Settings.Default}, Path=FontSize}"
                 HorizontalScrollBarVisibility="Auto" 
                 VerticalScrollBarVisibility="Auto"
@@ -174,7 +174,7 @@
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="{DynamicResource Number}" Binding="{Binding BrojDresa}" Width="*" Foreground="{DynamicResource MaterialDesignBody}" />
                     <DataGridTextColumn Header="{DynamicResource Name}" Binding="{Binding Ime}" Width="2*" Foreground="{DynamicResource MaterialDesignBody}" />
-                    <DataGridTextColumn Header="{DynamicResource Surname}" Binding="{Binding Prezime}" Width="3*" Foreground="{DynamicResource MaterialDesignBody}" />
+                    <DataGridTextColumn Header="{DynamicResource Surname}" Binding="{Binding Prezime}" Width="2*" Foreground="{DynamicResource MaterialDesignBody}" />
                     <DataGridTemplateColumn Width="2*">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
@@ -213,7 +213,7 @@
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="{DynamicResource Number}" Binding="{Binding BrojDresa}" Width="*"  Foreground="{DynamicResource MaterialDesignBody}" />
                     <DataGridTextColumn Header="{DynamicResource Name}" Binding="{Binding Ime}" Width="2*" Foreground="{DynamicResource MaterialDesignBody}" />
-                    <DataGridTextColumn Header="{DynamicResource Surname}" Binding="{Binding Prezime}" Width="3*" Foreground="{DynamicResource MaterialDesignBody}" />
+                    <DataGridTextColumn Header="{DynamicResource Surname}" Binding="{Binding Prezime}" Width="2*" Foreground="{DynamicResource MaterialDesignBody}" />
                     <DataGridTemplateColumn Width="2*">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
