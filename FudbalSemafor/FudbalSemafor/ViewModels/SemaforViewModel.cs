@@ -345,7 +345,7 @@ namespace FudbalSemafor.ViewModels
 
         private void UbaciDomaci(object parameter)
         {
-            if (parameter is Igrac igrac)
+            if (parameter is Igrac igrac && DomaciStarters.Count < 11)
             {
                 IgracNaUtakmici inu = new IgracNaUtakmici();
                 inu.IdIgrac = igrac.IdIgrac;
@@ -376,7 +376,7 @@ namespace FudbalSemafor.ViewModels
 
         private void UbaciGosti(object parameter)
         {
-            if (parameter is Igrac igrac)
+            if (parameter is Igrac igrac && GostiStarters.Count < 11)
             {
                 IgracNaUtakmici inu = new IgracNaUtakmici();
                 inu.IdIgrac = igrac.IdIgrac;
