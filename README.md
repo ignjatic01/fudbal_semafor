@@ -27,10 +27,12 @@
 2. [Korišćenje aplikacije](#korisćenje-aplikacije)
     - [Pregled menija](#pregled-menija)
     - [Upravljanje tabelama](#upravljanje-tabelama)
+    - [Opcije](#opcije)
     - [Praćenje utakmice](#praćenje-utakmice)
-4. [Podešavanja](#podešavanja)
-5. [Česta pitanja](#česta-pitanja)
-6. [Kontakt](#kontakt)
+    - [Nalozi](#nalozi)
+    - [Pregled statistike](#pregled-statistike)
+4. [Tehnologije](#tehnologije)
+5. [Kontakt](#kontakt)
 
 ---
 
@@ -119,35 +121,46 @@ Kao što vidimo na slici, prozor se sastoji od: grbova domaćeg i gostujućeg ti
 3. Žuti karton - Selektovanom igraču se dodjeljuje žuti karton i događaj ispisuje na ekranu. Ukoliko igrač dobije drugi žuti karton, automatski dobija i crveni karton i izbacuje se sa utakmice.
 4. Crveni karton - Selektovani igrač se izbacuje sa utakmice i događaj ispisuje na ekranu.
 
+Vrijeme se automatski unosi, te je na taj način posao operatera minimalizovan. Tajmer će stati u 45. minutu, te se svi događaji u sidujskoj nadoknadi bilježe da su se desili u 45. minuti što je prihvatljivo i česta praksa kod zapisnika fudbalskih utakmica. Nakon što počne drugo poluvrijeme, potrebno je kliknuti na komandu **2. pol** nakon čega kreće računanje vremena od 45. do 90. minuta. Sam proces unosa događaja je identičan kao za prvo poluvrijeme.
 
+Ukoliko dođe do greške prilikom unosa gola ili kartona, istu je moguće ispraviti klikom na **X** pored pogrešno unesenog događaja. Promjena rezultata će se sama zabilježiti.
+
+![image](https://github.com/user-attachments/assets/76538abb-4e0b-423c-9d50-2cac7a68b031)
+
+### Nalozi
+
+Aplikacija prepoznaje dva tipa naloga: administrator i operater. Operater ima pristup opcijama, statistici i praćenju utakmice, dok administrator pored toga ima puno pravo za uređivanje svih tabela. Administrator takođe ima pristup svim korisničkim nalozima, nad kojima može izvršiti promjenu uloge (može nekom nalogu oduzeti ili dodati administratorska prava) i samo brisanje naloga.
+
+![image](https://github.com/user-attachments/assets/ffa1b01c-ec85-4917-992c-a39132e877a3)
+
+
+### Pregled statistike
+
+Statistika je jedan od osnovnih koncepata u sportu. Njena uloga je velika. Zbog realne mogućnosti upotrebe aplikacije na turnirima, velika je prednost automatizacija izrade statistike. Bilježe se podaci o pojedinačnim igračima (golovi, kartoni), kao i podaci o klubovima (broj pobjeda, poraza i neriješenih). Pored tabelarnog prikaza, prisutan je i grafički prikaz odnosa žutih i crvenih kartona, kao i broja igrača koji su postigli golove i onih koje se nisu upisivali na listu strijelaca.
+
+![image](https://github.com/user-attachments/assets/b5369a18-afac-4d41-a55e-574cb4fde5d4)
 
 
 ---
 
-## Podešavanja
+## Tehnologije
 
-U sekciji **Podešavanja** možete prilagoditi sledeće:
+Za izradu ove aplikacije, korišćene su sljedeće tehnologije
 
-- Jezik aplikacije
-- Tema (svetla/tamna)
-- Obaveštenja
-
----
-
-## Česta pitanja
-
-### Kako resetovati šifru?
-
-Kliknite na **Zaboravljena šifra** na ekranu za prijavu i pratite uputstva za resetovanje šifre.
+- WPF (Windows Presentation Foundation) - Za kreiranje korisničkog interfejsa aplikacije.
+- Material Design in XAML Toolkit - Za primenu Material Design stilova i ikonica.
+- C# - Kao programski jezik za implementaciju logike aplikacije.
+- XAML (Extensible Application Markup Language) - Za definisanje korisničkog interfejsa.
+- MySQL - Baza podataka
 
 ---
+
 
 ## Kontakt
 
-Za dodatne informacije ili tehničku podršku, kontaktirajte nas na:
+Za dodatne informacije ili tehničku podršku, kontaktirajte me na:
 
-- **Email:** podrška@etfbl.org
-- **Telefon:** +387 51 123 456
+- **Email:** mica.ignjatic01@gmail.com
 
 ---
 
