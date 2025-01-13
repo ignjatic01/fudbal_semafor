@@ -1,0 +1,7 @@
+Pored osnovnog dijela vezanog za prvi projektni zadatak, odrađeni su svi dodatni zahtjevi:ž
+-Dva jezika
+-Tri teme, veličine slova i dva stila fonta
+-Dva tipa korisničkih naloga
+-Korisničko uputstvo
+
+Za pristup sistemu, lozinka je identična korisničkom imenu. (npr. kredencijali za Admina su username: admin1 password: admin1)
